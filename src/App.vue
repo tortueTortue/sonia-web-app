@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <b-navbar>
@@ -13,7 +11,7 @@
         <b-navbar-item tag="router-link" :to="{ name: 'topics' }">Topics</b-navbar-item>
         <b-navbar-dropdown label="Info">
           <b-navbar-item tag="router-link" :to="{ name: 'about' }">About</b-navbar-item>
-          <b-navbar-item href="#">Contact</b-navbar-item>
+          <b-navbar-item href="#">Contact (NOT DONE)</b-navbar-item>
         </b-navbar-dropdown>
       </template>
 
@@ -30,6 +28,7 @@
     </b-navbar>
 
   <router-view></router-view>
+  
   </div>
 </template>
 
