@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <grid-layout
-      :layout.sync="moduleLayout"
+      :layout.sync="activeModules"
       :col-num="12"
       :row-height="30"
       :is-draggable="true"
@@ -12,20 +12,23 @@
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="item in moduleLayout"
+        v-for="item in activeModules"
         :x="item.x"
         :y="item.y"
         :w="item.w"
         :h="item.h"
         :i="item.i"
-        :key="item.i"
+        :key="item.id"
+        class="module"
+        @resized="resizedEvent"
+        @moved="movedEvent"
       >
         <nav class="level">
           <div class="level-left">
             <span>Index: {{ item.i }}</span>
           </div>
           <div class="level-right">
-            <button class="button is-warning is-small is-outlined" >
+            <button class="button is-warning is-small is-outlined">
               <!-- TODO: Find another white icon for minimize -->
               <b-icon icon="window-minimize"></b-icon>
             </button>
@@ -44,9 +47,27 @@
 import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
+  methods: {
+    movedEvent: function(i, newX, newY){
+      this.$store.commit('setModulePosition', 
+      {
+        i: i,
+        x: newX,
+        y: newY
+      })
+    },
+    resizedEvent: function(i, newH, newW, newHPx, newWPx){
+      this.$store.commit('setModuleSize', 
+      {
+        i: i,
+        h: newH,
+        w: newW
+      })
+    },
+  },
   computed: {
-    moduleLayout(){
-      return this.$store.state.moduleLayout
+    activeModules() {
+      return this.$store.state.activeModules;
     }
   },
   components: {
@@ -55,4 +76,11 @@ export default {
   }
 };
 </script>
+
+<style>
+.module {
+  border: 2px solid lightgray;
+  border-radius: 5px;
+}
+</style>
 
