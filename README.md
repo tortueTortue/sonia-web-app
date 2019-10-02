@@ -1,5 +1,18 @@
 # sonia-web-app
 URL : https://quotidy.github.io/sonia-web-app/#/
+
+# TODO 
+### Ros configuration page
+- [ ] Establish connection with Ros web server
+- [ ] Subscribe to topics
+- [ ] Display topic information
+- [ ] Work on individual topics
+### General
+- [ ] Add a 'make the topic static' button
+- [ ] Save/Loadout layouts
+- [ ] Authentification user-->layouts
+- [ ] ...
+
 ## Project setup
 ```
 npm install
