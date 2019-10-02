@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <b-navbar>
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
@@ -27,16 +27,19 @@
       </template>
     </b-navbar>
 
-  <router-view></router-view>
-  
+    <router-view></router-view>
+
+    
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
-<style >
+<style>
+
 </style>
 
 

@@ -38,6 +38,28 @@ export default new Vuex.Store({
           state.moduleList[index].w = payload.w
         }
       })
+    },
+    //Toggles active status
+    setModuleStatus(state, payload) {
+      var inactiveList = []
+      var activeList = []
+      
+      state.moduleList.forEach(function (item, index) {
+        if (item.i == payload.i) {
+          state.moduleList[index].active = payload.active
+        }
+      })
+      state.moduleList.forEach(function (item) {
+        if(item.active){
+          activeList.push(item);
+        } 
+        else {
+          inactiveList.push(item);
+        }
+      })
+      state.activeModules = activeList
+      state.inactiveModules = inactiveList
+
     }
   },
   actions: {

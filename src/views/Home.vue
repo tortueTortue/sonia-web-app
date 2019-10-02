@@ -12,24 +12,23 @@
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="item in activeModules"
-        :x="item.x"
-        :y="item.y"
-        :w="item.w"
-        :h="item.h"
-        :i="item.i"
-        :key="item.id"
+        v-for="module in activeModules"
+        :x="module.x"
+        :y="module.y"
+        :w="module.w"
+        :h="module.h"
+        :i="module.i"
+        :key="module.id"
         class="module"
         @resized="resizedEvent"
         @moved="movedEvent"
       >
         <nav class="level">
           <div class="level-left">
-            <span>Index: {{ item.i }}</span>
+            <span>Index: {{ module.i }}</span>
           </div>
           <div class="level-right">
-            <button class="button is-warning is-small is-outlined">
-              <!-- TODO: Find another white icon for minimize -->
+            <button @click="minimizeModule(module)" class="button is-warning is-small is-outlined">
               <b-icon icon="window-minimize"></b-icon>
             </button>
             <button class="button is-danger is-small is-outlined">
@@ -39,6 +38,16 @@
         </nav>
       </grid-item>
     </grid-layout>
+    <footer class="footer has-text-centered">
+      <button
+        v-for="module in inactiveModules"
+        :key="module.id"
+        @click="minimizeModule(module)"
+        class="button is-warning is-small is-outlined"
+      >
+        <b-icon icon="window-minimize"></b-icon>
+      </button>
+    </footer>
   </div>
 </template>
 
@@ -48,26 +57,34 @@ import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
   methods: {
-    movedEvent: function(i, newX, newY){
-      this.$store.commit('setModulePosition', 
-      {
+    movedEvent: function(i, newX, newY) {
+      this.$store.commit("setModulePosition", {
         i: i,
         x: newX,
         y: newY
-      })
+      });
     },
-    resizedEvent: function(i, newH, newW, newHPx, newWPx){
-      this.$store.commit('setModuleSize', 
-      {
+    resizedEvent: function(i, newH, newW) {
+      this.$store.commit("setModuleSize", {
         i: i,
         h: newH,
         w: newW
-      })
+      });
     },
+    //TODO: Make a mixin to be DRY
+    minimizeModule: function(module) {
+      this.$store.commit("setModuleStatus", {
+        i: module.i,
+        active: !module.active
+      });
+    }
   },
   computed: {
     activeModules() {
       return this.$store.state.activeModules;
+    },
+    inactiveModules() {
+      return this.$store.state.inactiveModules;
     }
   },
   components: {
@@ -81,6 +98,14 @@ export default {
 .module {
   border: 2px solid lightgray;
   border-radius: 5px;
+}
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  padding: 1rem 2rem 2rem 2rem !important;
+  text-align: center;
 }
 </style>
 
