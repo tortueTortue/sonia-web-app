@@ -3,13 +3,13 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Topics page</h1>
-        <h2 class="subtitle">Rostopic configurations (Currently displaying module positions)</h2>
+        <h2 class="subtitle">Rostopic configurations (Currently displaying topic positions)</h2>
         <!-- Main container -->
         <nav class="level">
           <!-- Left side -->
           <div class="level-left">
             <div class="level-item">
-              <b-table :data="moduleList" :columns="columns"></b-table>
+              <b-table :data="topicList" :columns="columns"></b-table>
             </div>
           </div>
 
@@ -32,7 +32,7 @@ export default {
       columns: [
         {
           field: "i",
-          label: "Module"
+          label: "Topic"
         },
         {
           field: "x",
@@ -66,8 +66,8 @@ export default {
     };
   },
   computed: {
-    moduleList() {
-      return this.$store.state.moduleList;
+    topicList() {
+      return this.$store.state.topic.topicList;
     }
   }
 };
