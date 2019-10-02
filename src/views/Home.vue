@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <grid-layout
-      :layout.sync="activeModules"
+      :layout.sync="activeTopics"
       :col-num="12"
       :row-height="30"
       :is-draggable="true"
@@ -12,23 +12,23 @@
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="module in activeModules"
-        :x="module.x"
-        :y="module.y"
-        :w="module.w"
-        :h="module.h"
-        :i="module.i"
-        :key="module.id"
-        class="module"
+        v-for="topic in activeTopics"
+        :x="topic.x"
+        :y="topic.y"
+        :w="topic.w"
+        :h="topic.h"
+        :i="topic.i"
+        :key="topic.id"
+        class="topic"
         @resized="resizedEvent"
         @moved="movedEvent"
       >
         <nav class="level">
           <div class="level-left">
-            <span>Index: {{ module.i }}</span>
+            <span>Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
-            <button @click="minimizeModule(module)" class="button is-warning is-small is-outlined">
+            <button @click="minimizeTopic(topic)" class="button is-warning is-small is-outlined">
               <b-icon icon="window-minimize"></b-icon>
             </button>
             <button class="button is-danger is-small is-outlined">
@@ -40,12 +40,12 @@
     </grid-layout>
     <footer class="footer has-text-centered">
       <button
-        v-for="module in inactiveModules"
-        :key="module.id"
-        @click="minimizeModule(module)"
-        class="button is-warning is-small is-outlined"
+        v-for="topic in inactiveTopics"
+        :key="topic.id"
+        @click="minimizeTopic(topic)"
+        class="button is-dark is-small is-outlined"
       >
-        <b-icon icon="window-minimize"></b-icon>
+        Index: {{ topic.i }}
       </button>
     </footer>
   </div>
@@ -58,33 +58,32 @@ export default {
   name: "home",
   methods: {
     movedEvent: function(i, newX, newY) {
-      this.$store.commit("setModulePosition", {
+      this.$store.commit("setTopicPosition", {
         i: i,
         x: newX,
         y: newY
       });
     },
     resizedEvent: function(i, newH, newW) {
-      this.$store.commit("setModuleSize", {
+      this.$store.commit("setTopicSize", {
         i: i,
         h: newH,
         w: newW
       });
     },
-    //TODO: Make a mixin to be DRY
-    minimizeModule: function(module) {
-      this.$store.commit("setModuleStatus", {
-        i: module.i,
-        active: !module.active
+    minimizeTopic: function(topic) {
+      this.$store.commit("setTopicStatus", {
+        i: topic.i,
+        active: !topic.active
       });
     }
   },
   computed: {
-    activeModules() {
-      return this.$store.state.activeModules;
+    activeTopics() {
+      return this.$store.state.topic.activeTopics;
     },
-    inactiveModules() {
-      return this.$store.state.inactiveModules;
+    inactiveTopics() {
+      return this.$store.state.topic.inactiveTopics;
     }
   },
   components: {
@@ -95,7 +94,7 @@ export default {
 </script>
 
 <style>
-.module {
+.topic {
   border: 2px solid lightgray;
   border-radius: 5px;
 }
