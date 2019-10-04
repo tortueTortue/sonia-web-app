@@ -9,14 +9,16 @@
           <!-- Left side -->
           <div class="level-left">
             <div class="level-item">
-              <b-table :data="topicList" :columns="columns"></b-table>
+              <b-button type="is-light" @click="connectToRos">Connect to Ros</b-button>
+              <b-button type="is-light" @click="createTopic">Create topic test</b-button>
+              <b-button type="is-light" @click="connectToTopic">Connect to topic test</b-button>
             </div>
           </div>
 
           <!-- Right side -->
           <div class="level-right">
             <p class="level-item">
-              <strong>All</strong>
+              <b-table :data="topicList" :columns="columns"></b-table>
             </p>
           </div>
         </nav>
@@ -26,9 +28,37 @@
 </template>
 
 <script>
+import ROSLIB from "../../node_modules/roslib";
+import isObject from "util";
+
+// ros.on("connection", function() {
+//   console.log("Connected to websocket server.");
+// });
+
+// ros.on("error", function(error) {
+//   console.log("Error connecting to websocket server: ", error);
+// });
+
+// ros.on("close", function() {
+//   console.log("Connection to websocket server closed.");
+// });
+
+// cmdProviderThrusterEffort.subscribe(function(message) {
+//   console.log(
+//     "Received message from " +
+//       cmdProviderThrusterEffort.name +
+//       ": " +
+//       JSON.stringify(message)
+//   );
+
+//   cmdProviderThrusterEffort.unsubscribe();
+// });
+
 export default {
   data: function() {
     return {
+      ros: isObject,
+      cmdProviderThrusterEffort: isObject,
       columns: [
         {
           field: "i",
@@ -65,11 +95,42 @@ export default {
       ]
     };
   },
+  methods: {
+    connectToRos() {
+      this.ros = new ROSLIB.Ros({
+        url: "ws://localhost:9090"
+      });
+      console.log(JSON.stringify(this.ros));
+    },
+    createTopic() {
+      const vm = this
+      this.cmdProviderThrusterEffort = new ROSLIB.Topic({
+        ros: vm.ros,
+        name: "/provider_thruster/effort",
+        messageType: "provider_thruster/ThrusterEffort",
+        throttle_rate: 1000,
+      });
+      console.log(JSON.stringify(this.cmdProviderThrusterEffort));
+    },
+    connectToTopic() {
+      const vm = this
+      this.cmdProviderThrusterEffort.subscribe(function(message) {
+        console.log(
+          "Received message from " +
+            vm.cmdProviderThrusterEffort.name +
+            ": " +
+            JSON.stringify(message)
+        );
+        
+      });
+    }
+  },
   computed: {
     topicList() {
       return this.$store.state.topic.topicList;
     }
-  }
+  },
+  created() {}
 };
 </script>
 
