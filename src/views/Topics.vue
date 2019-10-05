@@ -10,8 +10,22 @@
           <div class="level-left">
             <div class="level-item">
               <b-button type="is-light" @click="connectToRos">Connect to Ros</b-button>
-              <b-button type="is-light" @click="createTopic">Create topic test</b-button>
-              <b-button type="is-light" @click="connectToTopic">Connect to topic test</b-button>
+              <div class="level-item">
+                <form @submit="createTopic">
+                  <b-field label="Name">
+                    <b-input v-model="name"></b-input>
+                  </b-field>
+                  <b-field label="MessageType">
+                    <b-input v-model="messageType"></b-input>
+                  </b-field>
+                  <b-field label="ThrottleRate">
+                    <b-input v-model="throttleRate"></b-input>
+                  </b-field>
+                  <b-button tag="input" value="submit" type="is-light" @click="createTopic">Create topic test</b-button>
+                </form>
+              </div>
+              <!-- <b-button type="is-light" @click="createTopic">Create topic test</b-button> -->
+              <!-- <b-button type="is-light" @click="connectToTopic">Connect to topic test</b-button> -->
             </div>
           </div>
 
@@ -31,32 +45,12 @@
 import ROSLIB from "../../node_modules/roslib";
 import isObject from "util";
 
-// ros.on("connection", function() {
-//   console.log("Connected to websocket server.");
-// });
-
-// ros.on("error", function(error) {
-//   console.log("Error connecting to websocket server: ", error);
-// });
-
-// ros.on("close", function() {
-//   console.log("Connection to websocket server closed.");
-// });
-
-// cmdProviderThrusterEffort.subscribe(function(message) {
-//   console.log(
-//     "Received message from " +
-//       cmdProviderThrusterEffort.name +
-//       ": " +
-//       JSON.stringify(message)
-//   );
-
-//   cmdProviderThrusterEffort.unsubscribe();
-// });
-
 export default {
   data: function() {
     return {
+      name: "/provider_thruster/thruster_effort",
+      messageType: "provider_thruster/ThrusterEffort",
+      throttleRate: 200,
       ros: isObject,
       cmdProviderThrusterEffort: isObject,
       columns: [
@@ -103,17 +97,23 @@ export default {
       console.log(JSON.stringify(this.ros));
     },
     createTopic() {
-      const vm = this
+      const vm = this;
       this.cmdProviderThrusterEffort = new ROSLIB.Topic({
         ros: vm.ros,
-        name: "/provider_thruster/effort",
-        messageType: "provider_thruster/ThrusterEffort",
-        throttle_rate: 1000,
+        name: vm.name,
+        messageType: vm.messageType,
+        throttle_rate: vm.throttleRate
       });
-      console.log(JSON.stringify(this.cmdProviderThrusterEffort));
+      console.log(
+        "created new instance of topic: " + 
+        JSON.stringify(
+          this.cmdProviderThrusterEffort.name
+        )
+      );
+      this.connectToTopic();
     },
     connectToTopic() {
-      const vm = this
+      const vm = this;
       this.cmdProviderThrusterEffort.subscribe(function(message) {
         console.log(
           "Received message from " +
@@ -121,7 +121,6 @@ export default {
             ": " +
             JSON.stringify(message)
         );
-        
       });
     }
   },
