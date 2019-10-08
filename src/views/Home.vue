@@ -28,6 +28,9 @@
             <span>Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
+            <button @click="minimizeTopic(topic)" class="button is-success is-small is-outlined">
+              <b-icon icon="anchor"></b-icon>
+            </button>
             <button @click="minimizeTopic(topic)" class="button is-warning is-small is-outlined">
               <b-icon icon="window-minimize"></b-icon>
             </button>
@@ -75,10 +78,16 @@ export default {
         w: newW
       });
     },
-    minimizeTopic: function(topic) {
+    minimizeModule: function(topic) {
       this.$store.commit("setTopicStatus", {
         i: topic.i,
         active: !topic.active
+      });
+    },
+    fixModule: function(topic) {
+      this.$store.commit("setTopicStatus", {
+        i: topic.i,
+        static: !topic.static
       });
     }
   },
