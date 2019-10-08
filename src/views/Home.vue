@@ -45,7 +45,7 @@
       <button
         v-for="topic in inactiveTopics"
         :key="topic.id"
-        @click="minimizeTopic(topic)"
+        @click="minimizeModule(topic)"
         class="button is-dark is-small is-outlined"
       >
         Index: {{ topic.i }}
