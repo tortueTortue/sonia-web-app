@@ -23,19 +23,19 @@
         @resized="resizedEvent"
         @moved="movedEvent"
       >
-        <nav class="level">
+        <nav class="level module-nav">
           <div class="level-left">
-            <span>Index: {{ topic.i }}</span>
+            <span class="text-small">Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
-            <button @click="fixModule(topic)" class="button is-success is-small is-outlined">
-              <b-icon icon="anchor"></b-icon>
+            <button @click="fixModule(topic)" class="button is-success is-small is-very-small is-outlined">
+              <b-icon size="is-small" icon="anchor"></b-icon>
             </button>
-            <button @click="minimizeModule(topic)" class="button is-warning is-small is-outlined">
-              <b-icon icon="window-minimize"></b-icon>
+            <button @click="minimizeModule(topic)" class="button is-warning is-small is-very-small is-outlined">
+              <b-icon size="is-small" icon="window-minimize"></b-icon>
             </button>
-            <button class="button is-danger is-small is-outlined">
-              <b-icon icon="close"></b-icon>
+            <button class="button is-danger is-small is-very-small is-outlined">
+              <b-icon size="is-small" icon="close"></b-icon>
             </button>
           </div>
         </nav>
@@ -106,6 +106,14 @@ export default {
 </script>
 
 <style>
+.is-very-small{
+  height: 18px!important;
+  width: 18px!important;
+  padding: 0!important;
+}
+.text-small{
+  font-size: 0.8rem!important;
+}
 .topic {
   border: 2px solid lightgray;
   border-radius: 5px;
