@@ -38,7 +38,7 @@
         </nav>
       </grid-item>
     </grid-layout>
-    <footer class="footer has-text-centered">
+    <footer class="footer has-text-centered level">
       <button
         v-for="topic in inactiveTopics"
         :key="topic.id"
@@ -47,6 +47,7 @@
       >
         Index: {{ topic.i }}
       </button>
+      <b-button @click="killswitch" type="is-danger" class="level-right">K I L L</b-button>
     </footer>
   </div>
 </template>
@@ -57,6 +58,9 @@ import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
   methods: {
+    killswitch: function(){
+      alert("Death to the SUB");
+    },
     movedEvent: function(i, newX, newY) {
       this.$store.commit("setTopicPosition", {
         i: i,
