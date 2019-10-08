@@ -28,7 +28,7 @@
             <span>Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
-            <button @click="minimizeTopic(topic)" class="button is-success is-small is-outlined">
+            <button @click="fixModule(topic)" class="button is-success is-small is-outlined">
               <b-icon icon="anchor"></b-icon>
             </button>
             <button @click="minimizeTopic(topic)" class="button is-warning is-small is-outlined">
@@ -50,7 +50,7 @@
       >
         Index: {{ topic.i }}
       </button>
-      <b-button @click="killswitch" type="is-danger" class="level-right">K I L L</b-button>
+      <b-button @click="killswitch" type="is-danger" class="level-right bold md-text-size"><b-icon icon="skull"></b-icon> K I L L <b-icon icon="skull"></b-icon></b-button>
     </footer>
   </div>
 </template>
@@ -61,7 +61,7 @@ import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
   methods: {
-    killswitch: function(){
+    killswitch: function() {
       alert("Death to the SUB");
     },
     movedEvent: function(i, newX, newY) {
@@ -85,7 +85,7 @@ export default {
       });
     },
     fixModule: function(topic) {
-      this.$store.commit("setTopicStatus", {
+      this.$store.commit("setTopicStatic", {
         i: topic.i,
         static: !topic.static
       });
@@ -118,6 +118,13 @@ export default {
   height: 10px;
   padding: 1rem 2rem 2rem 2rem !important;
   text-align: center;
+}
+.bold{
+  font-weight: 900;
+}
+.md-text-size{
+  font-size: 1.2rem!important;
+  line-height: 140%!important;
 }
 </style>
 

@@ -9,7 +9,20 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'S o n i a',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'A graphical user interface for telemetry.'
+          },
+          {
+            property: 'og:description',
+            content: 'SONIA UI : A graphical user interface for telemetry.'
+          }
+        ]
+      }
     },
     {
       path: '/topics',
