@@ -35,6 +35,9 @@
 
 <script>
 export default {
+  data: {
+    theme-color
+  }
 };
 </script>
 
