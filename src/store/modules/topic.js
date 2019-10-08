@@ -35,7 +35,7 @@ const mutations = {
         })
     },
     //Toggles active status
-    setTopicStatus(state, payload) {
+    setModuleStatus(state, payload) {
         var inactiveList = []
         var activeList = []
 
@@ -54,7 +54,6 @@ const mutations = {
         })
         state.activeTopics = activeList
         state.inactiveTopics = inactiveList
-
     }
 }
 

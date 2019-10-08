@@ -31,7 +31,7 @@
             <button @click="fixModule(topic)" class="button is-success is-small is-outlined">
               <b-icon icon="anchor"></b-icon>
             </button>
-            <button @click="minimizeTopic(topic)" class="button is-warning is-small is-outlined">
+            <button @click="minimizeModule(topic)" class="button is-warning is-small is-outlined">
               <b-icon icon="window-minimize"></b-icon>
             </button>
             <button class="button is-danger is-small is-outlined">
@@ -79,16 +79,15 @@ export default {
       });
     },
     minimizeModule: function(topic) {
-      this.$store.commit("setTopicStatus", {
+      console.log("Minimize this module"+topic.i)
+      this.$store.commit("setModuleStatus", {
         i: topic.i,
         active: !topic.active
       });
     },
     fixModule: function(topic) {
-      this.$store.commit("setTopicStatic", {
-        i: topic.i,
-        static: !topic.static
-      });
+      console.log("Fix this module"+topic.i)
+      topic.static = !topic.static
     }
   },
   computed: {
