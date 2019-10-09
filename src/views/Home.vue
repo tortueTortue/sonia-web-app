@@ -88,6 +88,7 @@ export default {
     fixModule: function(topic) {
       console.log("Fix this module"+topic.i)
       topic.static = !topic.static
+      topic.isDragable = !topic.isDragable
     }
   },
   computed: {
