@@ -9,9 +9,9 @@
         </b-navbar-item>
       </template>
       <template slot="start">
-        <b-navbar-item tag="router-link" :to="{ name: 'home' }">Home</b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ name: 'topics' }">Topics</b-navbar-item>
-        <b-navbar-dropdown label="Info">
+        <b-navbar-item :class="{'text-white': isDark}" tag="router-link" :to="{ name: 'home' }">Home</b-navbar-item>
+        <b-navbar-item :class="{'text-white': isDark}" tag="router-link" :to="{ name: 'topics' }">Topics</b-navbar-item>
+        <b-navbar-dropdown :class="{'dark-mode-navbar': isDark}" label="Info">
           <b-navbar-item tag="router-link" :to="{ name: 'about' }">About</b-navbar-item>
           <b-navbar-item href="#">Contact (NOT DONE)</b-navbar-item>
         </b-navbar-dropdown>
@@ -67,6 +67,12 @@ export default {
 .dark-mode-navbar{
   background-color: #152642!important;
   color:#fff!important;
+}
+.text-white{
+  color: #fff!important;
+}
+label.text-white{
+  color:  #fff;
 }
 
 </style>

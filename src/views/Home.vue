@@ -60,6 +60,11 @@
 import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
+  props:{
+    isDark : {
+      type : Boolean,
+    }
+  },
   methods: {
     killswitch: function() {
       alert("Death to the SUB");
