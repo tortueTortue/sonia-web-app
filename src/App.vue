@@ -1,9 +1,11 @@
 <template>
   <div class="content">
-    <b-navbar :class="{ 'dark-mode-navbar': isDark}">
+    <b-navbar :class="{'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img :src=" isDark ? darkLogo : lightLogo" alt="Sonia logo" />
+         <!-- <img :src=" isDark ? darkLogo : lightLogo" alt="Sonia logo" /> -->
+         <img v-if="!isDark" src="./assets/logo_color.png" alt="Sonia logo" />
+         <img v-else src="./assets/logo_white.png" alt="Sonia logo" />
         </b-navbar-item>
       </template>
       <template slot="start">
