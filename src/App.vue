@@ -3,7 +3,7 @@
     <b-navbar :class="{ 'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img src="./assets/logo_color.png" alt="Sonia logo" />
+          <img :src=" isDark ? darkLogo : lightLogo" alt="Sonia logo" />
         </b-navbar-item>
       </template>
       <template slot="start">
@@ -40,7 +40,9 @@
 export default {
   data: function() {
     return {
-      isDark: false
+      isDark: false,
+      lightLogo : './assets/logo_white.png',
+      darkLogo : './assets/logo_color.png'
     }
   },
   methods:{
