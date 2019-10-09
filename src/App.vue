@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <b-navbar>
+    <b-navbar :class="{ 'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img src="./assets/logo_color.png" alt="Sonia logo" />
@@ -18,6 +18,9 @@
       <template slot="end">
         <b-navbar-item tag="div">
           <div class="buttons">
+            <a class="button is-dark" @click="toggleDarkMode">
+              <strong>Dark Mode</strong>
+            </a>
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
@@ -35,13 +38,32 @@
 
 <script>
 export default {
-  data: {
-    theme-color
+  data: function() {
+    return {
+      isDark: false
+    }
+  },
+  methods:{
+    toggleDarkMode: function(){
+      console.log("Dark mode is "+!this.isDark);
+      this.isDark = !this.isDark
+    }
   }
 };
 </script>
 
 <style>
+.blue{
+  background-color: #081B33!important;
+}
+.dark-mode{
+  background-color: #081B33!important;
+  color:#fff!important;
+}
+.dark-mode-navbar{
+  background-color: #152642!important;
+  color:#fff!important;
+}
 
 </style>
 
