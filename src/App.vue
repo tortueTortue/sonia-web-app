@@ -7,7 +7,7 @@
         </b-navbar-item>
       </template>
       <template slot="start">
-        <b-navbar-item :class="{'text-white': isDark}" tag="router-link" :to="{ name: 'home' }">Home</b-navbar-item>
+        <b-navbar-item :class="{'text-white': isDark}" tag="router-link" :to="{ name: 'home' }">Telemetry</b-navbar-item>
         <b-navbar-item :class="{'text-white': isDark}" tag="router-link" :to="{ name: 'topics' }">Topics</b-navbar-item>
         <b-navbar-dropdown :class="{'dark-mode-navbar': isDark}" label="Info">
           <b-navbar-item tag="router-link" :to="{ name: 'about' }">About</b-navbar-item>
