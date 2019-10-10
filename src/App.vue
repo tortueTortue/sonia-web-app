@@ -3,9 +3,7 @@
     <b-navbar :class="{'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-         <!-- <img :src=" isDark ? darkLogo : lightLogo" alt="Sonia logo" /> -->
-         <img v-if="!isDark" src="./assets/logo_color.png" alt="Sonia logo" />
-         <img v-else src="./assets/logo_white.png" alt="Sonia logo" />
+         <img :src=" !isDark ? darkLogo : lightLogo" alt="Sonia logo" />
         </b-navbar-item>
       </template>
       <template slot="start">
@@ -33,7 +31,6 @@
     </b-navbar>
 
     <router-view></router-view>
-
     
   </div>
 </template>
@@ -42,15 +39,21 @@
 export default {
   data: function() {
     return {
-      isDark: false,
-      lightLogo : './assets/logo_white.png',
-      darkLogo : './assets/logo_color.png'
+      //isDark: false,
+      lightLogo : require('./assets/logo_white.png'),
+      darkLogo : require('./assets/logo_color.png')
     }
   },
   methods:{
     toggleDarkMode: function(){
       console.log("Dark mode is "+!this.isDark);
-      this.isDark = !this.isDark
+      //this.isDark = !this.isDark
+      this.$store.commit("toggleDarkMode")
+    }
+  },
+  computed:{
+    isDark(){
+      return this.$store.state.isDark;
     }
   }
 };
@@ -68,8 +71,14 @@ export default {
   background-color: #152642!important;
   color:#fff!important;
 }
+.dark-mode-bottom-bar{
+  background: #2F4562!important;
+}
 .text-white{
   color: #fff!important;
+}
+.text-white:hover{
+  color: #000000!important;
 }
 label.text-white{
   color:  #fff;

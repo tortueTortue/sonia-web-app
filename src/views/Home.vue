@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home window-size" :class="{'dark-mode': isDark}">
     <grid-layout
       :layout.sync="activeTopics"
       :col-num="12"
@@ -19,13 +19,15 @@
         :h="topic.h"
         :i="topic.i"
         :key="topic.id"
+        :isDraggable="topic.isDraggable"
+        :isResizable="topic.isResizable"
         class="topic"
         @resized="resizedEvent"
         @moved="movedEvent"
       >
         <nav class="level module-nav">
           <div class="level-left">
-            <span class="text-small">Index: {{ topic.i }}</span>
+            <span class="text-small unselectable">Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
             <button @click="fixModule(topic)" class="button is-success is-small is-very-small is-outlined">
@@ -41,7 +43,7 @@
         </nav>
       </grid-item>
     </grid-layout>
-    <footer class="footer has-text-centered level">
+    <footer :class="{'dark-mode-bottom-bar' : isDark}" class="footer has-text-centered level fixed-bottom">
       <button
         v-for="topic in inactiveTopics"
         :key="topic.id"
@@ -60,11 +62,6 @@
 import VueGridLayout from "vue-grid-layout";
 export default {
   name: "home",
-  props:{
-    isDark : {
-      type : Boolean,
-    }
-  },
   methods: {
     killswitch: function() {
       alert("Death to the SUB");
@@ -92,8 +89,8 @@ export default {
     },
     fixModule: function(topic) {
       console.log("Fix this module"+topic.i)
-      topic.static = !topic.static
-      topic.isDragable = !topic.isDragable
+      topic.static = !topic.static;
+      topic.isDraggable = !topic.isDraggable;
     }
   },
   computed: {
@@ -102,6 +99,9 @@ export default {
     },
     inactiveTopics() {
       return this.$store.state.topic.inactiveTopics;
+    },
+    isDark(){
+      return this.$store.state.isDark;
     }
   },
   components: {
@@ -112,6 +112,22 @@ export default {
 </script>
 
 <style>
+.unselectable{
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+}
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+}
+.window-size{
+  height: 100vh!important;
+  width: 100vw!important;
+}
 .is-very-small{
   height: 18px!important;
   width: 18px!important;
