@@ -14,12 +14,12 @@
     "buefy": "^0.8.4",
     "core-js": "^2.6.5",
     "eventemitter2": "^5.0.1",
+    "mem": ">=4.0.0",
     "roslib": "^1.0.1",
     "vue": "^2.6.10",
     "vue-grid-layout": "^2.3.6",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
-    "mem": ">=4.0.0"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
