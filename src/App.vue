@@ -1,9 +1,9 @@
 <template>
-  <div class="content columns is-gapless">
-    <div :class="{'hidden' : isHidden }" class="column is-one-fifth">
+  <div class=" columns is-gapless margin-down-null height-full-screen">
+    <div :class="{'hidden' : isHidden, 'dark-mode': isDark}" class="sidebar-container column is-2">
         <template>
-          <b-menu>
-              <b-menu-list label="Menu">
+          <b-menu class="sidebar" :class="{'dark-mode': isDark}" >
+              <b-menu-list :class="{'text-white': isDark}" >
                   <b-menu-item icon="information-outline" label="Info"></b-menu-item>
                   <b-menu-item
                       icon="settings"
@@ -11,25 +11,25 @@
                       :expanded="isActive"
                       @click="isActive = !isActive">
                       <template slot="label" slot-scope="props">
-                          Administrator
+                          Widgets
                           <b-icon
                               class="is-pulled-right"
                               :icon="props.expanded ? 'menu-down' : 'menu-up'">
                           </b-icon>
                       </template>
-                      <b-menu-item icon="account" label="Users"></b-menu-item>
+                      <b-menu-item icon="account" label="Missions"></b-menu-item>
                       <b-menu-item icon="cellphone-link">
                           <template slot="label" slot-scope="props">
-                              Devices
+                              Thrusters
                               <b-dropdown aria-role="list" class="is-pulled-right" position="is-bottom-left">
                               <b-icon icon="dots-vertical" slot="trigger"></b-icon>
-                                  <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-                                  <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-                                  <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+                                  <b-dropdown-item aria-role="listitem">Left</b-dropdown-item>
+                                  <b-dropdown-item aria-role="listitem">Front</b-dropdown-item>
+                                  <b-dropdown-item aria-role="listitem">Right</b-dropdown-item>
                               </b-dropdown>
                           </template>
                       </b-menu-item>
-                      <b-menu-item icon="cash-multiple" label="Payments" disabled></b-menu-item>
+                      <b-menu-item icon="cash-multiple" label="Camera" disabled></b-menu-item>
                   </b-menu-item>
                   <b-menu-item icon="account" label="My Account">
                       <b-menu-item label="Account data"></b-menu-item>
@@ -45,14 +45,14 @@
                       to="/expo">
                   </b-menu-item>
               </b-menu-list>
-              <b-menu-list label="Actions">
+              <b-menu-list >
                   <b-menu-item label="Logout"></b-menu-item>
               </b-menu-list>
           </b-menu>
       </template>
     </div>
     <div class="column"> 
-        <b-navbar :class="{'dark-mode-navbar': isDark}">   
+        <b-navbar :class="{'dark-mode-navbar': isDark, 'is-10': !isHidden, 'column':!isHidden}">   
           <template slot="brand" >
             <b-navbar-item :class="{'hover-dark': isDark,'hover-light': !isDark}"  tag="router-link" :to="{ path: '/' }">
               <img @click="toggleSideBar" :src=" !isDark ? darkLogo : lightLogo" alt="Sonia logo" />
@@ -152,7 +152,24 @@ export default {
 label.text-white{
   color:  #fff;
 }
-
+ul.sidebar{
+  list-style: none!important;
+}
+.sidebar{
+  font-size: 1.2rem!important;
+}
+.sidebar-container{
+  height: calc(100vh - 50px)!important;
+  transition: width 1s ease-in-out 0.5s!important;;
+}
+.margin-down-null{
+  margin-bottom: 0%!important;
+}
+.height-full-screen{
+  height: calc(100vh - 50px)!important;
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
+}
 </style>
 
 

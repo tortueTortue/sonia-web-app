@@ -144,8 +144,8 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 10px;
-  padding: 1rem 2rem 2rem 2rem !important;
+  height: 50px!important;
+  padding: 5px 5px 5px 5px !important;
   text-align: center;
 }
 .bold{
