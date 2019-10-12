@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        isDark: false
+        isDark: false,
+        isSidebarOpen: false
     },
     mutations: {
         toggleDarkMode() {
             this.state.isDark = !this.state.isDark
+        },
+        toggleSideBar() {
+            this.state.isSidebarOpen = !this.state.isSidebarOpen
         }
     },
     actions: {
