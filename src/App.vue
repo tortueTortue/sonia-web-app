@@ -52,6 +52,7 @@
 
 <script>
 import SoniaNavbar from "./components/SoniaNavbar.vue";
+
 export default {
   components: {
     SoniaNavbar
@@ -124,8 +125,6 @@ ul.sidebar {
 }
 .height-full-screen {
   height: calc(100vh - 50px) !important;
-  overflow-x: hidden !important;
-  overflow-y: hidden !important;
 }
 </style>
 
