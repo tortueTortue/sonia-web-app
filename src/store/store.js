@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         isDark: false,
-        isSidebarOpen: false
+        isSidebarOpen: false,
+        isSignedIn: false
     },
     mutations: {
         toggleDarkMode() {
@@ -14,6 +15,12 @@ export default new Vuex.Store({
         },
         toggleSideBar() {
             this.state.isSidebarOpen = !this.state.isSidebarOpen
+        },
+        signIn() {
+            this.state.isSignedIn = true
+        },
+        signOut() {
+            this.state.isSignedIn = false
         }
     },
     actions: {
