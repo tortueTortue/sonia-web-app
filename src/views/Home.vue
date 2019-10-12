@@ -125,7 +125,7 @@ export default {
   bottom: 0;
 }
 .window-size{
-  height: calc(100vh - 140px)!important;
+  height: calc(100vh - 90px)!important;
   width: 100vw!important;
 }
 .is-very-small{

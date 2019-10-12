@@ -78,6 +78,9 @@ export default {
 };
 </script>
 <style>
+html{
+  overflow: hidden!important;
+}
 .hover-dark:hover {
   background-color: rgb(3, 16, 32) !important;
 }
@@ -94,6 +97,12 @@ export default {
 .dark-mode {
   background-color: #081b33 !important;
   color: #fff !important;
+}
+.dark-mode a{
+  color: #fff !important;
+}
+.dark-mode a:hover{
+  color: rgb(0, 0, 0) !important;
 }
 .dark-mode-bottom-bar {
   background: #2f4562 !important;
