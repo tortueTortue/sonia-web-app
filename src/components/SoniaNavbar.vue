@@ -1,6 +1,6 @@
 <template>
-  <div class>
-    <b-navbar :class="{'dark-mode-navbar': isDark, 'is-10': isSidebarOpen, 'column':isSidebarOpen}">
+  <div class :class="{'is-10': isSidebarOpen, 'column':isSidebarOpen}">
+    <b-navbar :class="{'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item
           :class="{'hover-dark': isDark,'hover-light': !isDark}"
