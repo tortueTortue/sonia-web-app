@@ -64,9 +64,6 @@ html{
 .dark-mode a:hover{
   color: rgb(0, 0, 0) !important;
 }
-.dark-mode-bottom-bar {
-  background: #2f4562 !important;
-}
 #text-white {
   color: #fff !important;
 }

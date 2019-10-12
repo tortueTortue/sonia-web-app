@@ -43,23 +43,14 @@
         </nav>
       </grid-item>
     </grid-layout>
-    <footer :class="{'dark-mode-bottom-bar' : isDark}" class="footer has-text-centered level fixed-bottom">
-      <button
-        v-for="topic in inactiveTopics"
-        :key="topic.id"
-        @click="minimizeModule(topic)"
-        class="button is-dark is-small is-outlined"
-      >
-        Index: {{ topic.i }}
-      </button>
-      <b-button @click="killswitch" type="is-danger" class="level-right bold md-text-size"><b-icon icon="skull"></b-icon> K I L L <b-icon icon="skull"></b-icon></b-button>
-    </footer>
+    <SoniaFooter name="sonia-footer"></SoniaFooter>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import VueGridLayout from "vue-grid-layout";
+import SoniaFooter from "./../components/SoniaFooter.vue";
+
 export default {
   name: "home",
   methods: {
@@ -106,7 +97,8 @@ export default {
   },
   components: {
     GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem
+    GridItem: VueGridLayout.GridItem,
+    SoniaFooter
   }
 };
 </script>
