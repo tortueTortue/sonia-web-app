@@ -128,6 +128,7 @@ export default {
 }
 .hidden{
   display: none!important;
+  transition: display .5s ease;
 }
 .blue{
   background-color: #081B33!important;
