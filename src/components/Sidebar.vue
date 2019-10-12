@@ -79,7 +79,7 @@ export default {
           maxlength: 20
         },
         trapFocus: true,
-        onConfirm: value => this.$buefy.toast.open(`Your name is: ${value}`)
+        onConfirm: value => this.$buefy.toast.open(`Saving layout : ${value}`)
       });
     }
   },
