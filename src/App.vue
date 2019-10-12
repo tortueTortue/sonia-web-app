@@ -3,12 +3,12 @@
     <div :class="{'hidden' : isHidden, 'dark-mode': isDark}" class="sidebar-container column is-2">
         <template>
           <b-menu class="sidebar" :class="{'dark-mode': isDark}" >
-              <b-menu-list :class="{'text-white': isDark}" >
+              <b-menu-list :id="{'text-white': isDark}" >
                   <b-menu-item icon="information-outline" label="Info"></b-menu-item>
                   <b-menu-item
                       icon="settings"
-                      :active="isActive"
-                      :expanded="isActive"
+                      :active="!isActive"
+                      :expanded="!isActive"
                       @click="isActive = !isActive">
                       <template slot="label" slot-scope="props">
                           Widgets
@@ -142,6 +142,9 @@ export default {
 }
 .dark-mode-bottom-bar{
   background: #2F4562!important;
+}
+#text-white{
+  color: #fff!important;
 }
 .text-white{
   color: #fff!important;
