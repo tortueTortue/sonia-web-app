@@ -87,8 +87,8 @@ export default {
     color: #e0e9f5!important;
 }
 .mini-wid-light-mode-kill{
-    background-color: #183b66!important;
-    border-color: #183b66!important;
+    background-color: #4576b1!important;
+    border-color: #4576b1!important;
     font-weight: 700!important;
     color: #fff!important;
     transition: ease 0.3s;
