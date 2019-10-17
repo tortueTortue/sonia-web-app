@@ -39,7 +39,7 @@
           <b-menu-item icon="content-save" label="Save Layout" @click="saveLayout"></b-menu-item>
         </b-menu-list>
         <b-menu-list>
-          <b-menu-item icon="settings" label="Settings"></b-menu-item>
+          <b-menu-item icon="settings" label="Settings" tag="router-link" :to="{ name: 'settings' }"></b-menu-item>
         </b-menu-list>
         <b-menu-list>
           <b-menu-item
