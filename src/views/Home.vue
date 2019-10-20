@@ -147,5 +147,8 @@ export default {
   font-size: 1.2rem!important;
   line-height: 140%!important;
 }
+.scroll-y{
+  overflow-y: scroll!important;
+}
 </style>
 

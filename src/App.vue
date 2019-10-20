@@ -92,6 +92,15 @@ ul.sidebar {
 .height-full-screen {
   height: calc(100vh - 50px) !important;
 }
+.big-text{
+  font-size: 2.4rem!important;
+}
+.med-text{
+  font-size: 1.9rem!important;
+}
+.space{
+  height: 20px!important;
+}
 </style>
 
 

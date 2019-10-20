@@ -7,7 +7,9 @@ export default new Vuex.Store({
     state: {
         isDark: false,
         isSidebarOpen: false,
-        isSignedIn: false
+        isSignedIn: false,
+        activeLayoutId: 1,
+        be_api_url: "http://localhost:8000"
     },
     mutations: {
         toggleDarkMode() {
@@ -21,6 +23,9 @@ export default new Vuex.Store({
         },
         signOut() {
             this.state.isSignedIn = false
+        },
+        setActiveLayoutId(id) {
+            this.state.activeLayoutId = id
         }
     },
     actions: {

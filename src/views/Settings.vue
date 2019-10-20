@@ -1,124 +1,97 @@
 <template>
-  <section>
-    <div class="settings">
-      <h1>This is an setting page</h1>
+  <div>
+    <div class="columns is-gapless">
+      <div class="column is-12 space"></div>
     </div>
-    <b-field grouped group-multiline>
-      <div class="control">
-        <b-switch v-model="isBordered">Bordered</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isStriped">Striped</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isNarrowed">Narrowed</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isHoverable">Hoverable</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isFocusable">Focusable</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isLoading">Loading state</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="isEmpty">Empty</b-switch>
-      </div>
-      <div class="control">
-        <b-switch v-model="hasMobileCards">
-          Mobile cards
-          <small>(collapsed rows)</small>
-        </b-switch>
-      </div>
-    </b-field>
-
-    <b-table
-      :data="isEmpty ? [] : data"
-      :bordered="isBordered"
-      :striped="isStriped"
-      :narrowed="isNarrowed"
-      :hoverable="isHoverable"
-      :loading="isLoading"
-      :focusable="isFocusable"
-      :mobile-cards="hasMobileCards"
-    >
-      <template slot-scope="props">
-        <b-table-column field="id" label="ID" width="40" numeric>{{ props.row.id }}</b-table-column>
-
-        <b-table-column field="first_name" label="First Name">{{ props.row.first_name }}</b-table-column>
-
-        <b-table-column field="last_name" label="Last Name">{{ props.row.last_name }}</b-table-column>
-
-        <b-table-column field="date" label="Date" centered>
-          <span class="tag is-success">{{ new Date(props.row.date).toLocaleDateString() }}</span>
-        </b-table-column>
-
-        <b-table-column label="Gender">
-          <span>
-            <b-icon pack="fas" :icon="props.row.gender === 'Male' ? 'mars' : 'venus'"></b-icon>
-            {{ props.row.gender }}
-          </span>
-        </b-table-column>
-      </template>
-
-      <template slot="empty">
-        <section class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>
-              <b-icon icon="emoticon-sad" size="is-large"></b-icon>
-            </p>
-            <p>Nothing here.</p>
+    <div class="columns is-gapless">
+      <div class="column is-2"></div>
+      <section class="column is-8">
+        <div class="settings">
+          <h1 class="big-text">Settings</h1>
+          <br />
+        </div>
+        <h1 class="med-text">Options</h1>
+        <br />
+        <b-field grouped group-multiline>
+          <div class="control">
+            <b-switch v-model="isBordered">Killswitch Top</b-switch>
           </div>
-        </section>
-      </template>
-    </b-table>
-  </section>
+          <div class="control">
+            <b-switch v-model="isStriped">Lefty</b-switch>
+          </div>
+          <div class="control">
+            <b-switch v-model="hasMobileCards">Dark mode</b-switch>
+          </div>
+        </b-field>
+        <br />
+        <h1 class="med-text">Layouts</h1>
+        <b-table
+          :data="isEmpty ? [] : layouts"
+          :bordered="isBordered"
+          :striped="isStriped"
+          :narrowed="isNarrowed"
+          :hoverable="isHoverable"
+          :loading="isLoading"
+          :focusable="isFocusable"
+          :mobile-cards="hasMobileCards"
+        >
+          <template slot-scope="props">
+            <b-table-column field="layoutName" label="Name">{{ props.row.name }}</b-table-column>
+
+            <b-table-column field="date" label="Active" centered>
+              <span v-if="isLayoutActive(props.row.id)" class="tag is-success">active</span>
+              <span v-else class="tag is-danger">inactive</span>
+            </b-table-column>
+          </template>
+
+          <template slot="empty">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>
+                  <b-icon icon="emoticon-sad" size="is-large"></b-icon>
+                </p>
+                <p>Nothing here.</p>
+              </div>
+            </section>
+          </template>
+        </b-table>
+      </section>
+      <div class="column is-2"></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  name: "settings",
   data() {
-    const data = [
+    const layouts = [
       {
         id: 1,
-        first_name: "Jesse",
-        last_name: "Simmons",
-        date: "2016/10/15 13:43:27",
-        gender: "Male"
+        name: "Jesse"
       },
       {
         id: 2,
-        first_name: "John",
-        last_name: "Jacobs",
-        date: "2016/12/15 06:00:53",
-        gender: "Male"
+        name: "John"
       },
       {
         id: 3,
-        first_name: "Tina",
-        last_name: "Gilbert",
-        date: "2016/04/26 06:26:28",
-        gender: "Female"
+        name: "Tina"
       },
       {
         id: 4,
-        first_name: "Clarence",
-        last_name: "Flores",
-        date: "2016/04/10 10:28:46",
-        gender: "Male"
+        name: "Clarence"
       },
       {
         id: 5,
-        first_name: "Anne",
-        last_name: "Lee",
-        date: "2016/12/06 14:38:38",
-        gender: "Female"
+        name: "Anne"
       }
     ];
 
     return {
-      data,
+      layouts,
       isEmpty: false,
       isBordered: false,
       isStriped: false,
@@ -128,6 +101,28 @@ export default {
       isLoading: false,
       hasMobileCards: true
     };
+  },
+  methods: {
+    isLayoutActive(id) {
+      return this.$store.state.activeLayoutId == id;
+    },
+    getLayouts() {
+      axios
+        .get(this.$store.state.be_api_url + "/api/layout/")
+        .then(function(response) {
+          console.log("Response : "+ response.isEmpty);
+          this.layouts = response.data || "";
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally(function() {
+          console.log("Done.");
+        });
+    }
+  },
+  mounted: function() {
+    this.getLayouts();
   }
 };
 </script>
