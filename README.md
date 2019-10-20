@@ -8,7 +8,8 @@ URL : https://quotidy.github.io/sonia-web-app/#/
 - [ ] Display topic information
 - [ ] Work on individual topics
 ### General
-- [ ] Add a 'make the topic static' button
+- [x] Add a 'make the topic static' button
+- [ ] Change the name Topic to telemetryModule
 - [ ] Save/Loadout layouts
 - [ ] Authentification user-->layouts
 - [ ] ...
