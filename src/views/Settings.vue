@@ -38,9 +38,13 @@
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">{{ props.row.name }}</b-table-column>
 
-            <b-table-column field="date" label="Active" centered>
+            <b-table-column field="Status" label="Status" centered>
               <span v-if="isLayoutActive(props.row.id)" class="tag is-success">active</span>
               <span v-else class="tag is-danger">inactive</span>
+            </b-table-column>
+
+            <b-table-column field="Option" label="Option" centered>
+              <button @click="deleteLayout(props.row.id)" class="button is-danger is-small">Danger</button>
             </b-table-column>
           </template>
 
@@ -68,26 +72,7 @@ export default {
   name: "settings",
   data() {
     const layouts = [
-      {
-        id: 1,
-        name: "Jesse"
-      },
-      {
-        id: 2,
-        name: "John"
-      },
-      {
-        id: 3,
-        name: "Tina"
-      },
-      {
-        id: 4,
-        name: "Clarence"
-      },
-      {
-        id: 5,
-        name: "Anne"
-      }
+
     ];
 
     return {
@@ -106,12 +91,26 @@ export default {
     isLayoutActive(id) {
       return this.$store.state.activeLayoutId == id;
     },
-    getLayouts() {
+    async getLayouts() {
       axios
         .get(this.$store.state.be_api_url + "/api/layout/")
-        .then(function(response) {
-          console.log("Response : "+ response.isEmpty);
+        .then(response => {
+          console.log("Response : " + response);
           this.layouts = response.data || "";
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally(function() {
+          console.log("Done.");
+        });
+    },
+    async deleteLayout(id) {
+      axios
+        .delete(this.$store.state.be_api_url + "/api/layout/" + id+"/")
+        .then(response => {
+          console.log("Response : " + response);
+          this.getLayouts();
         })
         .catch(function(error) {
           console.log(error);

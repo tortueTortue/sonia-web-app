@@ -8,7 +8,7 @@ export default new Vuex.Store({
         isDark: false,
         isSidebarOpen: false,
         isSignedIn: false,
-        activeLayoutId: 1,
+        activeLayoutId: -1,
         be_api_url: "http://localhost:8000"
     },
     mutations: {
@@ -26,6 +26,9 @@ export default new Vuex.Store({
         },
         setActiveLayoutId(id) {
             this.state.activeLayoutId = id
+        },
+        noLayout(id) {
+            this.state.activeLayoutId = -1
         }
     },
     actions: {
