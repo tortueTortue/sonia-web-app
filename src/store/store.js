@@ -8,6 +8,7 @@ export default new Vuex.Store({
         isDark: false,
         isSidebarOpen: false,
         isSignedIn: false,
+        isLeft: true,
         activeLayoutId: -1,
         be_api_url: "http://localhost:8000"
     },
@@ -17,6 +18,9 @@ export default new Vuex.Store({
         },
         toggleSideBar() {
             this.state.isSidebarOpen = !this.state.isSidebarOpen
+        },
+        toggleLeftMode() {
+            this.state.isLeft = !this.state.isLeft
         },
         signIn() {
             this.state.isSignedIn = true

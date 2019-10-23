@@ -78,7 +78,4 @@ export default {
   background-color: #152642 !important;
   color: #fff !important;
 }
-.padding-null{
-  padding: 0%!important;
-}
 </style>

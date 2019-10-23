@@ -1,10 +1,11 @@
 <template>
   <div class="columns is-gapless margin-down-null height-full-screen">
-    <Sidebar class="sidebar"></Sidebar>
+    <Sidebar v-if="isLeft" class="sidebar"></Sidebar>
     <div class="column">
       <SoniaNavbar name="sonia-navbar"></SoniaNavbar>
       <router-view></router-view>
     </div>
+    <Sidebar v-if="!isLeft" class="sidebar"></Sidebar>
   </div>
 </template>
 
@@ -33,6 +34,9 @@ export default {
     },
     isDark() {
       return this.$store.state.isDark;
+    },
+    isLeft() {
+      return this.$store.state.isLeft;
     }
   }
 };
@@ -100,6 +104,9 @@ ul.sidebar {
 }
 .space{
   height: 20px!important;
+}
+.padding-null{
+  padding: 0%!important;
 }
 </style>
 

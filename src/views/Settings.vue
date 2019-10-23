@@ -16,11 +16,11 @@
           <div class="control">
             <b-switch v-model="isBordered">Killswitch Top</b-switch>
           </div>
-          <div class="control">
-            <b-switch v-model="isStriped">Lefty</b-switch>
+          <div class="control" @click="toggleLeftMode">
+            <b-switch v-model="isLeft">Lefty</b-switch>
           </div>
-          <div class="control">
-            <b-switch v-model="hasMobileCards">Dark mode</b-switch>
+          <div class="control" @click="toggleDarkMode">
+            <b-switch v-model="isDark">Dark mode</b-switch>
           </div>
         </b-field>
         <br />
@@ -33,18 +33,20 @@
           :hoverable="isHoverable"
           :loading="isLoading"
           :focusable="isFocusable"
-          :mobile-cards="hasMobileCards"
         >
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">{{ props.row.name }}</b-table-column>
 
             <b-table-column field="Status" label="Status" centered>
-              <span v-if="isLayoutActive(props.row.id)" class="tag is-success">active</span>
-              <span v-else class="tag is-danger">inactive</span>
+              <span v-if="isLayoutActive(props.row.id)" class="tag is-success">Active</span>
+              <span v-else class="tag is-danger">Inactive</span>
             </b-table-column>
 
             <b-table-column field="Option" label="Option" centered>
-              <button @click="confirmDelete(props.row.id)" class="button is-danger is-small">Danger</button>
+              <button
+                @click="confirmDelete(props.row.id)"
+                class="delete-button button is-danger is-small"
+              >Delete</button>
             </b-table-column>
           </template>
 
@@ -81,13 +83,18 @@ export default {
       isNarrowed: false,
       isHoverable: false,
       isFocusable: false,
-      isLoading: false,
-      hasMobileCards: true
+      isLoading: false
     };
   },
   methods: {
     isLayoutActive(id) {
       return this.$store.state.activeLayoutId == id;
+    },
+    toggleDarkMode: function() {
+      this.$store.commit("toggleDarkMode");
+    },
+    toggleLeftMode: function() {
+      this.$store.commit("toggleLeftMode");
     },
     async getLayouts() {
       axios
@@ -126,14 +133,33 @@ export default {
         type: "is-danger",
         hasIcon: true,
         onConfirm: () => {
-            this.deleteLayout(id)
-            this.$buefy.toast.open("Layout deleted!")
+          this.deleteLayout(id);
+          this.$buefy.toast.open("Layout deleted!");
         }
       });
     }
   },
   mounted: function() {
     this.getLayouts();
+  },
+  computed: {
+    isDark() {
+      return this.$store.state.isDark;
+    },
+    isLeft() {
+      return this.$store.state.isLeft;
+    }
   }
 };
 </script>
+<style>
+.delete-button {
+  font-weight: 500 !important;
+  transition: ease 0.3s;
+}
+.delete-button:hover {
+  background-color: #750a0a !important;
+  color: #fbc1c1 !important;
+  transition: ease 0.3s;
+}
+</style>

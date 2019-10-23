@@ -1,5 +1,8 @@
 <template>
-  <div class="home window-size" :class="{'dark-mode': isDark}">
+  <div
+    class="home window-height"
+    :class="{'dark-mode': isDark,'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
+  >
     <grid-layout
       :layout.sync="activeTopics"
       :col-num="12"
@@ -30,10 +33,16 @@
             <span class="text-small unselectable">Index: {{ topic.i }}</span>
           </div>
           <div class="level-right">
-            <button @click="fixModule(topic)" class="button is-success is-small is-very-small is-outlined">
+            <button
+              @click="fixModule(topic)"
+              class="button is-success is-small is-very-small is-outlined"
+            >
               <b-icon size="is-small" icon="anchor"></b-icon>
             </button>
-            <button @click="minimizeModule(topic)" class="button is-warning is-small is-very-small is-outlined">
+            <button
+              @click="minimizeModule(topic)"
+              class="button is-warning is-small is-very-small is-outlined"
+            >
               <b-icon size="is-small" icon="window-minimize"></b-icon>
             </button>
             <button class="button is-danger is-small is-very-small is-outlined">
@@ -72,14 +81,14 @@ export default {
       });
     },
     minimizeModule: function(topic) {
-      console.log("Minimize this module"+topic.i)
+      console.log("Minimize this module" + topic.i);
       this.$store.commit("setModuleStatus", {
         i: topic.i,
         active: !topic.active
       });
     },
     fixModule: function(topic) {
-      console.log("Fix this module"+topic.i)
+      console.log("Fix this module" + topic.i);
       topic.static = !topic.static;
       topic.isDraggable = !topic.isDraggable;
     }
@@ -91,8 +100,11 @@ export default {
     inactiveTopics() {
       return this.$store.state.topic.inactiveTopics;
     },
-    isDark(){
+    isDark() {
       return this.$store.state.isDark;
+    },
+    isSidebarOpen() {
+      return this.$store.state.isSidebarOpen;
     }
   },
   components: {
@@ -104,29 +116,31 @@ export default {
 </script>
 
 <style>
-.unselectable{
-  -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-     -khtml-user-select: none; 
-       -moz-user-select: none; 
-        -ms-user-select: none; 
-            user-select: none; 
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-.fixed-bottom{
+.fixed-bottom {
   position: fixed;
   bottom: 0;
 }
-.window-size{
-  height: calc(100vh - 90px)!important;
-  width: 100vw!important;
+.window-height {
+  height: calc(100vh - 90px) !important;
 }
-.is-very-small{
-  height: 18px!important;
-  width: 18px!important;
-  padding: 0!important;
+.window-width {
+  width: 100vw !important;
 }
-.text-small{
-  font-size: 0.8rem!important;
+.is-very-small {
+  height: 18px !important;
+  width: 18px !important;
+  padding: 0 !important;
+}
+.text-small {
+  font-size: 0.8rem !important;
 }
 .topic {
   border: 2px solid lightgray;
@@ -136,19 +150,19 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 50px!important;
+  height: 50px !important;
   padding: 5px 5px 5px 5px !important;
   text-align: center;
 }
-.bold{
+.bold {
   font-weight: 900;
 }
-.md-text-size{
-  font-size: 1.2rem!important;
-  line-height: 140%!important;
+.md-text-size {
+  font-size: 1.2rem !important;
+  line-height: 140% !important;
 }
-.scroll-y{
-  overflow-y: scroll!important;
+.scroll-y {
+  overflow-y: scroll !important;
 }
 </style>
 
