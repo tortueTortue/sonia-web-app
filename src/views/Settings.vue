@@ -44,7 +44,7 @@
             </b-table-column>
 
             <b-table-column field="Option" label="Option" centered>
-              <button @click="deleteLayout(props.row.id)" class="button is-danger is-small">Danger</button>
+              <button @click="confirmDelete(props.row.id)" class="button is-danger is-small">Danger</button>
             </b-table-column>
           </template>
 
@@ -71,9 +71,7 @@ import axios from "axios";
 export default {
   name: "settings",
   data() {
-    const layouts = [
-
-    ];
+    const layouts = [];
 
     return {
       layouts,
@@ -107,7 +105,7 @@ export default {
     },
     async deleteLayout(id) {
       axios
-        .delete(this.$store.state.be_api_url + "/api/layout/" + id+"/")
+        .delete(this.$store.state.be_api_url + "/api/layout/" + id + "/")
         .then(response => {
           console.log("Response : " + response);
           this.getLayouts();
@@ -118,6 +116,20 @@ export default {
         .finally(function() {
           console.log("Done.");
         });
+    },
+    confirmDelete(id) {
+      this.$buefy.dialog.confirm({
+        title: "Deleting Layout",
+        message:
+          "Are you sure you want to <b>delete</b> this layout? You won`t be able to get it back if you do this.",
+        confirmText: "Delete Account",
+        type: "is-danger",
+        hasIcon: true,
+        onConfirm: () => {
+            this.deleteLayout(id)
+            this.$buefy.toast.open("Layout deleted!")
+        }
+      });
     }
   },
   mounted: function() {
