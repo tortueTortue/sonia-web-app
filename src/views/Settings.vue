@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="window-height" :class="{'dark-mode': isDark}">
     <div class="columns is-gapless">
       <div class="column is-12 space"></div>
     </div>
@@ -39,13 +39,14 @@
 
             <b-table-column field="Status" label="Status" centered>
               <span v-if="isLayoutActive(props.row.id)" class="tag is-success">Active</span>
-              <span v-else class="tag is-danger">Inactive</span>
+              <span v-else :class="isDark? 'dark-mode-status' : 'is-danger'" class="tag">Inactive</span>
             </b-table-column>
 
             <b-table-column field="Option" label="Option" centered>
               <button
                 @click="confirmDelete(props.row.id)"
-                class="delete-button button is-danger is-small"
+                class="button is-danger is-small"
+                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
               >Delete</button>
             </b-table-column>
           </template>
@@ -153,6 +154,11 @@ export default {
 };
 </script>
 <style>
+.dark-mode-status{
+    background-color: #b61515!important;
+    color: #fff!important;
+    font-weight: 600;
+}
 .delete-button {
   font-weight: 500 !important;
   transition: ease 0.3s;
@@ -161,5 +167,19 @@ export default {
   background-color: #750a0a !important;
   color: #fbc1c1 !important;
   transition: ease 0.3s;
+}
+.window-height {
+  height: calc(100vh - 40px) !important;
+}
+.dark-mode-delete-button{
+    background-color: #fff!important;
+    color: #b61515!important;
+    transition: ease 0.3s;
+    font-weight: 700!important;
+}
+.dark-mode-delete-button:hover{
+    background-color: #6b1e1e!important;
+    border-color: #6b1e1e!important;
+    color: #f3d0d0!important;
 }
 </style>

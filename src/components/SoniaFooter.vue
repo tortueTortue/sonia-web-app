@@ -99,9 +99,6 @@ export default {
     font-weight: 700!important;
     color: #e0e9f5!important;
 }
-.mini-wid--mode-kill{
-    background-color: #081b33!important;
-}
 .light-mode-kill{
     background-color: #e01e1e!important;
     color: rgb(250, 242, 242)!important;

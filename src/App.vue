@@ -68,6 +68,19 @@ html{
 .dark-mode a:hover{
   color: rgb(0, 0, 0) !important;
 }
+.dark-mode table{
+  background-color: #0a3366 !important;
+  border-color: #07274e !important;
+  color: #fff !important;
+}
+.dark-mode thead{
+  background-color: #07274e !important;
+  border-color: #07274e !important;
+
+}
+.dark-mode thead th{
+  color: #fff !important;
+}
 #text-white {
   color: #fff !important;
 }
