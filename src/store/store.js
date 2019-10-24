@@ -9,7 +9,7 @@ export default new Vuex.Store({
         isSidebarOpen: false,
         isSignedIn: false,
         isLeft: true,
-        isKillswitchUp: false,
+        isKillswitchUp: true,
         activeLayoutId: -1,
         be_api_url: "http://localhost:8000"
     },
@@ -22,6 +22,9 @@ export default new Vuex.Store({
         },
         toggleLeftMode() {
             this.state.isLeft = !this.state.isLeft
+        },
+        toggleKillswitch() {
+            this.state.isKillswitchUp = !this.state.isKillswitchUp
         },
         signIn() {
             this.state.isSignedIn = true

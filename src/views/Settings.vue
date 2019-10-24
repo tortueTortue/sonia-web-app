@@ -13,8 +13,8 @@
         <h1 class="med-text">Options</h1>
         <br />
         <b-field grouped group-multiline>
-          <div class="control">
-            <b-switch v-model="isBordered">Killswitch Top</b-switch>
+          <div class="control" @click="toggleKillswitch">
+            <b-switch v-model="isKillswitchUp">Killswitch Top</b-switch>
           </div>
           <div class="control" @click="toggleLeftMode">
             <b-switch v-model="isLeft">Lefty</b-switch>
@@ -97,6 +97,9 @@ export default {
     toggleLeftMode: function() {
       this.$store.commit("toggleLeftMode");
     },
+    toggleKillswitch: function() {
+      this.$store.commit("toggleKillswitch");
+    },
     async getLayouts() {
       axios
         .get(this.$store.state.be_api_url + "/api/layout/")
@@ -130,7 +133,7 @@ export default {
         title: "Deleting Layout",
         message:
           "Are you sure you want to <b>delete</b> this layout? You won`t be able to get it back if you do this.",
-        confirmText: "Delete Account",
+        confirmText: "Delete Layout",
         type: "is-danger",
         hasIcon: true,
         onConfirm: () => {
@@ -149,15 +152,18 @@ export default {
     },
     isLeft() {
       return this.$store.state.isLeft;
+    },
+    isKillswitchUp() {
+      return this.$store.state.isKillswitchUp;
     }
   }
 };
 </script>
 <style>
-.dark-mode-status{
-    background-color: #b61515!important;
-    color: #fff!important;
-    font-weight: 600;
+.dark-mode-status {
+  background-color: #b61515 !important;
+  color: #fff !important;
+  font-weight: 600;
 }
 .delete-button {
   font-weight: 500 !important;
@@ -171,15 +177,15 @@ export default {
 .window-height {
   height: calc(100vh - 40px) !important;
 }
-.dark-mode-delete-button{
-    background-color: #fff!important;
-    color: #b61515!important;
-    transition: ease 0.3s;
-    font-weight: 700!important;
+.dark-mode-delete-button {
+  background-color: #fff !important;
+  color: #b61515 !important;
+  transition: ease 0.3s;
+  font-weight: 700 !important;
 }
-.dark-mode-delete-button:hover{
-    background-color: #6b1e1e!important;
-    border-color: #6b1e1e!important;
-    color: #f3d0d0!important;
+.dark-mode-delete-button:hover {
+  background-color: #6b1e1e !important;
+  border-color: #6b1e1e !important;
+  color: #f3d0d0 !important;
 }
 </style>
