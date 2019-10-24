@@ -70,6 +70,16 @@ export default {
     },
     toggleDarkMode: function() {
       this.$store.commit("toggleDarkMode");
+    },
+    promptKillswitchAlert() {
+      this.$buefy.dialog.alert({
+        title: "GAME OVER",
+        message: "<b>The sub died...!</b>",
+        confirmText: "Great!"
+      });
+    },
+    killswitch: function() {
+      this.promptKillswitchAlert();
     }
   },
   computed: {
