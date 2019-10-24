@@ -1,7 +1,7 @@
 <template>
   <div
-    class="home window-height"
-    :class="{'dark-mode': isDark,'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
+    class="home window-height "
+    :class="{'dark-mode': isDark,'div-full-width': isSidebarOpen, 'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
   >
     <grid-layout
       :layout.sync="activeTopics"

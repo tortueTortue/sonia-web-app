@@ -1,5 +1,5 @@
 <template>
-  <div class :class="{'is-10': isSidebarOpen, 'column':isSidebarOpen, 'padding-null':isSidebarOpen}">
+  <div class :class="{'is-10': isSidebarOpen, 'column':isSidebarOpen, 'padding-null':isSidebarOpen, 'div-full-width':isSidebarOpen}">
     <b-navbar :class="{'dark-mode-navbar': isDark}">
       <template slot="brand">
         <b-navbar-item

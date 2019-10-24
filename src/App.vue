@@ -2,7 +2,7 @@
   <div class="columns is-gapless margin-down-null height-full-screen">
     <Sidebar v-if="isLeft" class="sidebar"></Sidebar>
     <div class="column">
-      <SoniaNavbar name="sonia-navbar"></SoniaNavbar>
+      <SoniaNavbar name="sonia-navbar" ></SoniaNavbar>
       <router-view></router-view>
     </div>
     <Sidebar v-if="!isLeft" class="sidebar"></Sidebar>
@@ -107,6 +107,9 @@ ul.sidebar {
 }
 .padding-null{
   padding: 0%!important;
+}
+.div-full-width {
+  width: 100% !important;
 }
 </style>
 
