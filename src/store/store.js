@@ -35,7 +35,7 @@ export default new Vuex.Store({
         setActiveLayoutId(id) {
             this.state.activeLayoutId = id
         },
-        noLayout(id) {
+        noLayout() {
             this.state.activeLayoutId = -1
         }
     },

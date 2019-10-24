@@ -39,7 +39,12 @@
           <b-menu-item icon="content-save" label="Save Layout" @click="saveLayout"></b-menu-item>
         </b-menu-list>
         <b-menu-list>
-          <b-menu-item icon="settings" label="Settings" tag="router-link" :to="{ name: 'settings' }"></b-menu-item>
+          <b-menu-item
+            icon="settings"
+            label="Settings"
+            tag="router-link"
+            :to="{ name: 'settings' }"
+          ></b-menu-item>
         </b-menu-list>
         <b-menu-list>
           <b-menu-item
@@ -53,6 +58,8 @@
 </template>
 
 <script >
+import axios from "axios";
+
 export default {
   name: "sidebar",
   data() {
@@ -68,8 +75,8 @@ export default {
       // Logs user out
     },
     saveLayout: function() {
-        console.log("here")
-        this.promptSaveLAyoutAlert()
+      console.log("here");
+      this.promptSaveLAyoutAlert();
     },
     promptSaveLAyoutAlert() {
       this.$buefy.dialog.prompt({
@@ -79,8 +86,27 @@ export default {
           maxlength: 20
         },
         trapFocus: true,
-        onConfirm: value => this.$buefy.toast.open(`Saving layout : ${value}`)
+        onConfirm: value => {
+          this.saveLayouts(value);
+          this.$buefy.toast.open(`Saving layout : ${value}`);
+        }
       });
+    },
+    async saveLayouts(layoutName) {
+      axios
+        .post(this.$store.state.be_api_url + "/api/layout/", {
+          name: layoutName
+        })
+        .then(response => {
+          console.log("Response : " + response);
+          this.layouts = response.data || "";
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally(function() {
+          console.log("Done.");
+        });
     }
   },
   computed: {
