@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{'hidden' : !isSidebarOpen, 'dark-mode': isDark}"
-    class="sidebar-container column is-2"
+    class="sidebar-container column is-2 height-full-screen-sidebar"
   >
     <template>
       <b-menu class="sidebar" :class="{'dark-mode': isDark}">
@@ -122,3 +122,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.height-full-screen-sidebar {
+  height: 100vh !important;
+}
+</style>
