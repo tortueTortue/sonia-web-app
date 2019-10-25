@@ -3,7 +3,7 @@
     <Sidebar v-if="isLeft" class="sidebar"></Sidebar>
     <div class="column">
       <SoniaNavbar name="sonia-navbar"></SoniaNavbar>
-      <transition>
+      <transition name="slide-fade">
         <router-view></router-view>
       </transition>
     </div>
@@ -123,6 +123,21 @@ ul.sidebar {
 }
 .div-full-width {
   width: 100% !important;
+}
+.slide-fade-enter-active {
+  transition: all 0.2s ease;
+}
+.slide-fade-leave-active {
+  /* transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0); */
+  transition: all 0.2s ease;
+}
+.slide-fade-leave-to {
+  transform: translateX(17px);
+  opacity: 0.1;
+}
+.slide-fade-leave-to {
+  transform: translateX(-17px);
+  opacity: 0.1;
 }
 </style>
 
