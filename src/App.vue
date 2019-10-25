@@ -2,8 +2,10 @@
   <div class="columns is-gapless margin-down-null height-full-screen">
     <Sidebar v-if="isLeft" class="sidebar"></Sidebar>
     <div class="column">
-      <SoniaNavbar name="sonia-navbar" ></SoniaNavbar>
-      <router-view></router-view>
+      <SoniaNavbar name="sonia-navbar"></SoniaNavbar>
+      <transition>
+        <router-view></router-view>
+      </transition>
     </div>
     <Sidebar v-if="!isLeft" class="sidebar"></Sidebar>
   </div>
@@ -26,8 +28,7 @@ export default {
       isActive: true
     };
   },
-  methods: {
-  },
+  methods: {},
   computed: {
     isSidebarOpen() {
       return this.$store.state.isSidebarOpen;
@@ -42,8 +43,8 @@ export default {
 };
 </script>
 <style>
-html{
-  overflow: hidden!important;
+html {
+  overflow: hidden !important;
 }
 .hover-dark:hover {
   background-color: rgb(3, 16, 32) !important;
@@ -62,23 +63,22 @@ html{
   background-color: #081b33 !important;
   color: #fff !important;
 }
-.dark-mode a{
+.dark-mode a {
   color: #fff !important;
 }
-.dark-mode a:hover{
+.dark-mode a:hover {
   color: rgb(0, 0, 0) !important;
 }
-.dark-mode table{
+.dark-mode table {
   background-color: #0a3366 !important;
   border-color: #07274e !important;
   color: #fff !important;
 }
-.dark-mode thead{
+.dark-mode thead {
   background-color: #07274e !important;
   border-color: #07274e !important;
-
 }
-.dark-mode thead th{
+.dark-mode thead th {
   color: #fff !important;
 }
 #text-white {
@@ -109,17 +109,17 @@ ul.sidebar {
 .height-full-screen {
   height: calc(100vh - 50px) !important;
 }
-.big-text{
-  font-size: 2.4rem!important;
+.big-text {
+  font-size: 2.4rem !important;
 }
-.med-text{
-  font-size: 1.9rem!important;
+.med-text {
+  font-size: 1.9rem !important;
 }
-.space{
-  height: 20px!important;
+.space {
+  height: 20px !important;
 }
-.padding-null{
-  padding: 0%!important;
+.padding-null {
+  padding: 0% !important;
 }
 .div-full-width {
   width: 100% !important;
