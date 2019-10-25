@@ -35,7 +35,13 @@
           :focusable="isFocusable"
         >
           <template slot-scope="props">
-            <b-table-column field="layoutName" label="Name">{{ props.row.name }}</b-table-column>
+            <b-table-column field="layoutName" label="Name">
+              <span v-if="!isEditMode">{{ props.row.name }}</span>
+
+              <b-field v-else>
+                <b-input :id="'layout'+props.row.id" :value="props.row.name"></b-input>
+              </b-field>
+            </b-table-column>
 
             <b-table-column field="Status" label="Status" centered>
               <span v-if="isLayoutActive(props.row.id)" class="tag is-success">Active</span>
@@ -48,6 +54,27 @@
                 class="button is-danger is-small"
                 :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
               >Delete</button>
+            </b-table-column>
+
+            <b-table-column field="Option" label="Edit" centered>
+              <button
+                v-if="!isEditMode"
+                @click="toggleEditMode"
+                class="button is-danger is-small"
+                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
+              >Edit</button>
+              <button
+                v-if="isEditMode"
+                @click="rename(props.row.id)"
+                class="button is-danger is-small"
+                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
+              >Save</button>
+              <button
+                v-if="isEditMode"
+                @click="toggleEditMode"
+                class="button is-danger is-small"
+                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
+              >Discard Changes</button>
             </b-table-column>
           </template>
 
@@ -74,7 +101,7 @@ import axios from "axios";
 export default {
   name: "settings",
   data() {
-    const layouts = [];
+    const layouts = [{ name: "something", id: 1 }];
 
     return {
       layouts,
@@ -84,7 +111,8 @@ export default {
       isNarrowed: false,
       isHoverable: false,
       isFocusable: false,
-      isLoading: false
+      isLoading: false,
+      isEditMode: false
     };
   },
   methods: {
@@ -99,6 +127,25 @@ export default {
     },
     toggleKillswitch: function() {
       this.$store.commit("toggleKillswitch");
+    },
+    toggleEditMode: function() {
+      this.isEditMode = !this.isEditMode;
+    },
+    rename(id) {
+      axios
+        .patch(this.$store.state.be_api_url + "/api/layout/" + id + "/",{
+          name: document.getElementById("layout" + id).value
+        })
+        .then(response => {
+          console.log("Response : " + response);
+          this.getLayouts();
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally(function() {
+          console.log("Done.");
+        });
     },
     async getLayouts() {
       axios
