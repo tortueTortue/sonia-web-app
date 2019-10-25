@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        isDark: false,
+        isDark: true,
         isSidebarOpen: false,
         isSignedIn: false,
         isLeft: true,
-        isKillswitchUp: true,
+        isKillswitchUp: false,
         activeLayoutId: -1,
         be_api_url: "http://localhost:8000"
     },

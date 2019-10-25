@@ -24,7 +24,17 @@
           </div>
         </b-field>
         <br />
-        <h1 class="med-text">Layouts</h1>
+        <div>
+          <h1 class="med-text inline align-middle-y">Layouts</h1>
+          <button
+            @click="toggleEditMode"
+            class="button is-danger small-margin-x is-small align-middle-y inline"
+            :class="isDark ? '' : ''"
+          >
+            <b-icon size="" icon="square-edit-outline"></b-icon>
+          </button>
+        </div>
+        <br />
         <b-table
           :data="isEmpty ? [] : layouts"
           :bordered="isBordered"
@@ -37,7 +47,6 @@
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">
               <span v-if="!isEditMode">{{ props.row.name }}</span>
-
               <b-field v-else>
                 <b-input :id="'layout'+props.row.id" :value="props.row.name"></b-input>
               </b-field>
@@ -58,23 +67,19 @@
 
             <b-table-column field="Option" label="Edit" centered>
               <button
-                v-if="!isEditMode"
-                @click="toggleEditMode"
-                class="button is-danger is-small"
-                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
-              >Edit</button>
-              <button
                 v-if="isEditMode"
                 @click="rename(props.row.id)"
                 class="button is-danger is-small"
                 :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
-              >Save</button>
+              >
+                <b-icon size="is-small" icon="content-save"></b-icon>
+              </button>
               <button
                 v-if="isEditMode"
                 @click="toggleEditMode"
                 class="button is-danger is-small"
                 :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
-              >Discard Changes</button>
+              ><b-icon size="is-small" icon="close-box-multiple"></b-icon></button>
             </b-table-column>
           </template>
 
@@ -97,10 +102,12 @@
 
 <script>
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "settings",
   data() {
+    //const layouts = [{ name: "something", id: 1 }];
     const layouts = [{ name: "something", id: 1 }];
 
     return {
@@ -133,12 +140,13 @@ export default {
     },
     rename(id) {
       axios
-        .patch(this.$store.state.be_api_url + "/api/layout/" + id + "/",{
+        .patch(this.$store.state.be_api_url + "/api/layout/" + id + "/", {
           name: document.getElementById("layout" + id).value
         })
         .then(response => {
           console.log("Response : " + response);
           this.getLayouts();
+          if (response.status == 200) this.$buefy.toast.open("Layout renamed!");
         })
         .catch(function(error) {
           console.log(error);
@@ -203,6 +211,9 @@ export default {
     isKillswitchUp() {
       return this.$store.state.isKillswitchUp;
     }
+  },
+  components: {
+    FontAwesomeIcon
   }
 };
 </script>
@@ -234,5 +245,15 @@ export default {
   background-color: #6b1e1e !important;
   border-color: #6b1e1e !important;
   color: #f3d0d0 !important;
+}
+.inline {
+  display: inline !important;
+}
+.align-middle-y {
+  vertical-align: middle !important;
+}
+.small-margin-x {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 </style>
