@@ -16,6 +16,9 @@ import SoniaNavbar from "./components/SoniaNavbar.vue";
 import Sidebar from "./components/Sidebar.vue";
 
 export default {
+  beforeMount:{
+
+  },
   components: {
     SoniaNavbar,
     Sidebar
