@@ -26,22 +26,22 @@ const state = {
 }
 
 const mutations = {
-    initModuleRepertory(){
+    initModuleRepertory() {
         axios
-        .get(this.$store.state.be_api_url + "/api/moduleName/")
-        .then(response => {
-          console.log("Response : " + response);
-          var modules = response.data || "";
-          modules.forEach( module => {
-              this.moduleRepertory.set(module.id, module)
-          })
-        })
-        .catch(function(error) {
-          console.log(error);
-        })
-        .finally(function() {
-          console.log("Done.");
-        });
+            .get(this.$store.state.be_api_url + "/api/moduleName/")
+            .then(response => {
+                console.log("Response : " + response);
+                var modules = response.data || "";
+                modules.forEach(module => {
+                    this.moduleRepertory.set(module.id, module)
+                })
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+            .finally(function() {
+                console.log("Done.");
+            });
     },
     setTopicPosition(state, payload) {
         state.topicList.forEach(function(item, index) {
@@ -79,12 +79,12 @@ const mutations = {
         state.activeTopics = activeList
         state.inactiveTopics = inactiveList
     },
-    closeSoniaModule(id){
+    closeSoniaModule(id) {
         this.inactiveModules.delete(id)
         this.activeModules.delete(id)
     },
-    loadLayout(modules){
-        modules.forEach( module => {
+    loadLayout(modules) {
+        modules.forEach(module => {
             module.active ? this.activeModules.set(module.id, module) : this.inactiveModules.set(module.id, module)
         })
     }

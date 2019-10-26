@@ -20,7 +20,11 @@ import SoniaNavbar from "./components/SoniaNavbar.vue";
 import Sidebar from "./components/Sidebar.vue";
 
 export default {
-  beforeMount: {},
+  beforeMount: {
+    init(){
+      this.$store.commit("initModuleRepertory")
+    }
+  },
   components: {
     SoniaNavbar,
     Sidebar
