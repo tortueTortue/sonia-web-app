@@ -42,6 +42,7 @@ export default new Vuex.Store({
     actions: {
 
     },
+    //WARNING : This attribute belongs to Vue Js, not to e confused with Sonia Modules.
     modules: {
         topic
     }
