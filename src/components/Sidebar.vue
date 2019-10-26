@@ -18,7 +18,7 @@
             </template>
             <b-menu-item icon="account" label="Missions"></b-menu-item>
             <b-menu-item icon="cellphone-link">
-              <template slot="label" slot-scope="props">
+              <template slot="label" >
                 Thrusters
                 <b-dropdown aria-role="list" class="is-pulled-right" position="is-bottom-left">
                   <b-icon icon="dots-vertical" slot="trigger"></b-icon>

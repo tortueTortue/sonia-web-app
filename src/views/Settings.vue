@@ -28,10 +28,10 @@
           <h1 class="med-text inline align-middle-y">Layouts</h1>
           <button
             @click="toggleEditMode"
-            class="button is-danger small-margin-x is-small align-middle-y inline"
-            :class="isDark ? '' : ''"
+            class="button small-margin-x is-small align-middle-y inline"
+            :class="isDark ? 'color-none' : 'light-color-none'"
           >
-            <b-icon size="" icon="square-edit-outline"></b-icon>
+            <b-icon icon="square-edit-outline"></b-icon>
           </button>
         </div>
         <br />
@@ -48,7 +48,7 @@
             <b-table-column field="layoutName" label="Name">
               <span v-if="!isEditMode">{{ props.row.name }}</span>
               <b-field v-else>
-                <b-input :id="'layout'+props.row.id" :value="props.row.name"></b-input>
+                <b-input class="settings-input" :id="'layout'+props.row.id" :value="props.row.name"></b-input>
               </b-field>
             </b-table-column>
 
@@ -69,17 +69,19 @@
               <button
                 v-if="isEditMode"
                 @click="rename(props.row.id)"
-                class="button is-danger is-small"
-                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
+                class="button is-small color-none"
+                :class="isDark ? 'color-none' : 'light-color-none'"
               >
-                <b-icon size="is-small" icon="content-save"></b-icon>
+                <b-icon icon="content-save"></b-icon>
               </button>
               <button
                 v-if="isEditMode"
                 @click="toggleEditMode"
-                class="button is-danger is-small"
-                :class="isDark ? 'dark-mode-delete-button' : 'delete-button'"
-              ><b-icon size="is-small" icon="close-box-multiple"></b-icon></button>
+                class="button is-small color-none"
+                :class="isDark ? 'color-none' : 'light-color-none'"
+              >
+                <b-icon icon="close-box-multiple"></b-icon>
+              </button>
             </b-table-column>
           </template>
 
@@ -102,7 +104,6 @@
 
 <script>
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "settings",
@@ -119,7 +120,8 @@ export default {
       isHoverable: false,
       isFocusable: false,
       isLoading: false,
-      isEditMode: false
+      isEditMode: false,
+      fullscreen: false
     };
   },
   methods: {
@@ -211,9 +213,6 @@ export default {
     isKillswitchUp() {
       return this.$store.state.isKillswitchUp;
     }
-  },
-  components: {
-    FontAwesomeIcon
   }
 };
 </script>
@@ -253,7 +252,11 @@ export default {
   vertical-align: middle !important;
 }
 .small-margin-x {
+  margin-top: 8px;
   margin-right: 10px;
   margin-left: 10px;
+}
+.settings-input {
+  width: 17rem !important;
 }
 </style>

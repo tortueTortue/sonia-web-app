@@ -1,5 +1,9 @@
 <template>
-  <div class="columns is-gapless margin-down-null height-full-screen">
+  <div
+    id="app"
+    @change="setFullscreenFalse"
+    class="columns is-gapless margin-down-null height-full-screen"
+  >
     <Sidebar v-if="isLeft" class="sidebar"></Sidebar>
     <div class="column">
       <SoniaNavbar name="sonia-navbar"></SoniaNavbar>
@@ -16,9 +20,7 @@ import SoniaNavbar from "./components/SoniaNavbar.vue";
 import Sidebar from "./components/Sidebar.vue";
 
 export default {
-  beforeMount:{
-
-  },
+  beforeMount: {},
   components: {
     SoniaNavbar,
     Sidebar
@@ -31,7 +33,12 @@ export default {
       isActive: true
     };
   },
-  methods: {},
+  methods: {
+    setFullscreenFalse() {
+      console.log("We just quit fullscreen mode");
+      this.$store.commit("setFullscreenFalse");
+    }
+  },
   computed: {
     isSidebarOpen() {
       return this.$store.state.isSidebarOpen;
@@ -48,6 +55,7 @@ export default {
 <style>
 html {
   overflow: hidden !important;
+  background-color: #081b33 !important;
 }
 .hover-dark:hover {
   background-color: rgb(3, 16, 32) !important;
@@ -141,6 +149,30 @@ ul.sidebar {
 .slide-fade-leave-to {
   transform: translateX(-17px);
   opacity: 0.1;
+}
+.color-none {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  transition: ease 0.2s;
+}
+.color-none :hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: rgb(119, 119, 126) !important;
+  transition: ease-out 0.3s;
+}
+.light-color-none {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: rgb(8, 49, 97) !important;
+  transition: ease 0.2s;
+}
+.light-color-none :hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: rgb(59, 59, 85) !important;
+  transition: ease-out 0.3s;
 }
 </style>
 

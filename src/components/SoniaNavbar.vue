@@ -48,6 +48,15 @@
               <b-icon icon="skull"></b-icon>K I L L
               <b-icon icon="skull"></b-icon>
             </b-button>
+            <b-button
+              @click="toggleFullscreen"
+              :class="isDark ? 'color-none' : 'light-color-none'"
+              class="level-right bold md-text-size"
+              v-if="!isKillswitchUp"
+            >
+              <b-icon v-if="!isFullscreen" icon="fullscreen"></b-icon>
+              <b-icon v-else icon="fullscreen-exit"></b-icon>
+            </b-button>
           </div>
         </b-navbar-item>
       </template>
@@ -80,6 +89,10 @@ export default {
     },
     killswitch: function() {
       this.promptKillswitchAlert();
+    },
+    toggleFullscreen() {
+      this.$store.commit("setFullscreenTrue");
+      document.getElementById('app').webkitRequestFullscreen();
     }
   },
   computed: {
@@ -91,12 +104,13 @@ export default {
     },
     isKillswitchUp() {
       return this.$store.state.isKillswitchUp;
+    },
+    isFullscreen() {
+      return this.$store.state.isFullscreen;
     }
   }
 };
 </script>
-
-
 <style scoped>
 .dark-mode-navbar {
   background-color: #152642 !important;

@@ -11,11 +11,14 @@ export default new Vuex.Store({
         isLeft: true,
         isKillswitchUp: false,
         activeLayoutId: -1,
+        isFullscreen: false,
         be_api_url: "http://localhost:8000"
     },
     mutations: {
         toggleDarkMode() {
             this.state.isDark = !this.state.isDark
+                // if (this.state.isDark == true) document.body.style.background = "#081b33";
+                // else document.html.style.background = "#fff";
         },
         toggleSideBar() {
             this.state.isSidebarOpen = !this.state.isSidebarOpen
@@ -34,6 +37,12 @@ export default new Vuex.Store({
         },
         setActiveLayoutId(id) {
             this.state.activeLayoutId = id
+        },
+        setFullscreenFalse() {
+            this.state.isFullscreen = false
+        },
+        setFullscreenTrue() {
+            this.state.isFullscreen = true
         },
         noLayout() {
             this.state.activeLayoutId = -1
