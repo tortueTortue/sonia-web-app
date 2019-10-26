@@ -13,20 +13,18 @@
             @click="isActive = !isActive"
           >
             <template slot="label" slot-scope="props">
-              Widgets
+              Modules
               <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'"></b-icon>
             </template>
+            <b-menu-item
+              v-for="module in modules"
+              v-bind:key="module.id"
+              :icon="module.icon"
+              :label="module.name"
+            ></b-menu-item>
             <b-menu-item icon="account" label="Missions"></b-menu-item>
             <b-menu-item icon="cellphone-link">
-              <template slot="label" >
-                Thrusters
-                <b-dropdown aria-role="list" class="is-pulled-right" position="is-bottom-left">
-                  <b-icon icon="dots-vertical" slot="trigger"></b-icon>
-                  <b-dropdown-item aria-role="listitem">Left</b-dropdown-item>
-                  <b-dropdown-item aria-role="listitem">Front</b-dropdown-item>
-                  <b-dropdown-item aria-role="listitem">Right</b-dropdown-item>
-                </b-dropdown>
-              </template>
+              <template slot="label">Thrusters</template>
             </b-menu-item>
             <b-menu-item icon="cash-multiple" label="Camera" disabled></b-menu-item>
           </b-menu-item>
@@ -63,9 +61,23 @@ import axios from "axios";
 export default {
   name: "sidebar",
   data() {
+    const modules = [
+      { icon: "map", name: "Map", id: 1 },
+      { icon: "depth", name: "depth", id: 2 },
+      { icon: "car", name: "motors", id: 3 }
+    ];
+
     return {
-      isActive: true
+      isActive: true,
+      modules
     };
+  },
+  beforeMount: {
+    initModuleList(){
+      // axios get Modules
+      // modules = request.data
+      // TODO add icon field in ModuleName db model
+    }
   },
   methods: {
     login: function() {

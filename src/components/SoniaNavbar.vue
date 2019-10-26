@@ -92,7 +92,7 @@ export default {
     },
     toggleFullscreen() {
       this.$store.commit("setFullscreenTrue");
-      document.getElementById('app').webkitRequestFullscreen();
+      document.getElementById('app').requestFullscreen();
     }
   },
   computed: {

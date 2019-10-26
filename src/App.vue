@@ -21,8 +21,13 @@ import Sidebar from "./components/Sidebar.vue";
 
 export default {
   beforeMount: {
-    init(){
-      this.$store.commit("initModuleRepertory")
+    init() {
+      this.$store.commit("initModuleRepertory");
+      document.addEventListener(
+        "fullscreenchange",
+        this.setFullscreenFalse,
+        false
+      );
     }
   },
   components: {
@@ -39,8 +44,10 @@ export default {
   },
   methods: {
     setFullscreenFalse() {
-      console.log("We just quit fullscreen mode");
-      this.$store.commit("setFullscreenFalse");
+      if (!document.fullscreenElement) {
+        console.log("We just quit fullscreen mode");
+        this.$store.commit("setFullscreenFalse");
+      }
     }
   },
   computed: {
