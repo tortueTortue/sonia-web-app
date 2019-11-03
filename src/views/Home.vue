@@ -28,28 +28,7 @@
         @resized="resizedEvent"
         @moved="movedEvent"
       >
-        <nav class="level module-nav">
-          <div class="level-left">
-            <span class="text-small unselectable">Index: {{ topic.i }}</span>
-          </div>
-          <div class="level-right">
-            <button
-              @click="fixModule(topic)"
-              class="button is-success is-small is-very-small is-outlined"
-            >
-              <b-icon size="is-small" icon="anchor"></b-icon>
-            </button>
-            <button
-              @click="minimizeModule(topic)"
-              class="button is-warning is-small is-very-small is-outlined"
-            >
-              <b-icon size="is-small" icon="window-minimize"></b-icon>
-            </button>
-            <button class="button is-danger is-small is-very-small is-outlined">
-              <b-icon size="is-small" icon="close"></b-icon>
-            </button>
-          </div>
-        </nav>
+        <module-header :topic="topic" />
         <TestModule />
       </grid-item>
     </grid-layout>
@@ -59,8 +38,10 @@
 
 <script>
 import VueGridLayout from "vue-grid-layout";
+import ModuleX from "./../components/ModuleX.vue";
 import SoniaFooter from "./../components/SoniaFooter.vue";
 import TestModule from "./../components/TestModule.vue";
+import ModuleHeader from "./../components/ModuleHeader.vue";
 
 export default {
   name: "home",
@@ -81,18 +62,6 @@ export default {
         h: newH,
         w: newW
       });
-    },
-    minimizeModule: function(topic) {
-      console.log("Minimize this module" + topic.i);
-      this.$store.commit("setModuleStatus", {
-        i: topic.i,
-        active: !topic.active
-      });
-    },
-    fixModule: function(topic) {
-      console.log("Fix this module" + topic.i);
-      topic.static = !topic.static;
-      topic.isDraggable = !topic.isDraggable;
     }
   },
   computed: {
@@ -113,7 +82,9 @@ export default {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
     SoniaFooter,
-    TestModule
+    TestModule,
+    ModuleX,
+    ModuleHeader
   }
 };
 </script>
