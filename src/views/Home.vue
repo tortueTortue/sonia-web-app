@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home window-height "
+    class="home window-height"
     :class="{'dark-mode': isDark,'div-full-width': isSidebarOpen, 'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
   >
     <grid-layout
@@ -50,6 +50,7 @@
             </button>
           </div>
         </nav>
+        <TestModule />
       </grid-item>
     </grid-layout>
     <SoniaFooter name="sonia-footer"></SoniaFooter>
@@ -59,6 +60,7 @@
 <script>
 import VueGridLayout from "vue-grid-layout";
 import SoniaFooter from "./../components/SoniaFooter.vue";
+import TestModule from "./../components/TestModule.vue";
 
 export default {
   name: "home",
@@ -110,7 +112,8 @@ export default {
   components: {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
-    SoniaFooter
+    SoniaFooter,
+    TestModule
   }
 };
 </script>

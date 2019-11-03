@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import topic from './modules/topic'
+import topics from './modules/topics'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -10,7 +11,7 @@ export default new Vuex.Store({
         isSignedIn: false,
         isLeft: true,
         isKillswitchUp: false,
-        activeLayoutId: -1,
+        activeLayoutId: -1,topic
         isFullscreen: false,
         be_api_url: "http://localhost:8000"
     },
@@ -51,8 +52,9 @@ export default new Vuex.Store({
     actions: {
 
     },
-    //WARNING : This attribute belongs to Vue Js, not to e confused with Sonia Modules.
+    //WARNING : This attribute belongs to Vue Js, not to be confused with Sonia Modules.
     modules: {
-        topic
+        topic,
+        topics
     }
 })
