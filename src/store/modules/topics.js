@@ -1,22 +1,26 @@
-// TODO 1 : Refactor to use a map instead of arrays
-// TODO 2 : Rename evything with topic to SoniaModule
-// TODO 3 : Topic list (Eventually SoniaModuleList) is a list of the modules(id and name)
+/**
+ * This is the repertory of each topic infos. The repertory can be access or update (publish) a chosen topic.
+ */
+// TODO Create the ROS Client here so that there's only one instance.
 import axios from "axios";
 
 const state = {
     thrusterEfforts: [
-        { "ID": 1, "Effort": 0},
-        { "ID": 2, "Effort": 0},
-        { "ID": 3, "Effort": 0},
-        { "ID": 4, "Effort": 0},
-        { "ID": 5, "Effort": 0},
-        { "ID": 6, "Effort": 0},
-        { "ID": 7, "Effort": 0},
-        { "ID": 8, "Effort": 0}
+        { "ID": 1, "Effort": -1000000},
+        { "ID": 2, "Effort": -1000000},
+        { "ID": 3, "Effort": -1000000},
+        { "ID": 4, "Effort": -1000000},
+        { "ID": 5, "Effort": -1000000},
+        { "ID": 6, "Effort": -1000000},
+        { "ID": 7, "Effort": -1000000},
+        { "ID": 8, "Effort": -1000000}
     ]
 }
 
 const mutations = {
+    updateThrusterEffort(id, effort){
+        this.thrusterEfforts[id-1] = effort
+    }
 }
 
 export default {
