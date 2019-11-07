@@ -42,8 +42,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Footer from '@/components/soniaModule/Footer.vue';
-import Header from '@/components/soniaModule/Header.vue';
+import Footer from '@/components/soniaModule/layout/Footer.vue';
+import Header from '@/components/soniaModule/layout/Header.vue';
 import Thruster from '@/components/soniaModule/content/Thruster.vue';
 import VueGridLayout from 'vue-grid-layout';
 import { TopicInformation } from './../types';

@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TopicInformation } from './../../types';
+import { TopicInformation } from './../../../types';
 
 @Component({
   props: ['topic'],

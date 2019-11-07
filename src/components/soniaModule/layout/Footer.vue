@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { TopicInformation } from './../../types';
+import { TopicInformation } from './../../../types';
 @Component
 export default class Footer extends Vue {
   public isMinimized = true;
