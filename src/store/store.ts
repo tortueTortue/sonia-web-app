@@ -38,11 +38,8 @@ const store: StoreOptions<RootState> = {
     setActiveLayoutId(state, id) {
       state.activeLayoutId = id;
     },
-    setFullscreenFalse(state) {
-      state.isFullscreen = false;
-    },
-    setFullscreenTrue(state) {
-      state.isFullscreen = true;
+    toggleFullscreen(state) {
+      state.isFullscreen = !state.isFullscreen;
     },
     noLayout(state) {
       state.activeLayoutId = -1;

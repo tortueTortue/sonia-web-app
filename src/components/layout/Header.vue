@@ -77,15 +77,11 @@ export default class ComponentName extends Vue {
       confirmText: 'Great!',
     });
   }
+  public toggleFullscreen() {
+    this.$store.commit('toggleFullscreen');
+  }
   public killswitch() {
     this.promptKillswitchAlert();
-  }
-  public toggleFullscreen() {
-    this.$store.commit('setFullscreenTrue');
-    const element = document.getElementById('app');
-    if (element != null) {
-      element.requestFullscreen();
-    }
   }
   get isSidebarOpen() {
     return this.$store.state.isSidebarOpen;

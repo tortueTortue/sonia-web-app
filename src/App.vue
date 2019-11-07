@@ -1,36 +1,42 @@
 <template>
-  <div>
-    <section class="section no-padding">
-      <Header />
-    </section>
-    <section class="section no-padding">
-      <Sidebar />
-    </section>
-    <section class="section no-padding">
-      <router-view></router-view>
-    </section>
-  </div>
+  <fullscreen ref="fullscreen" @change="fullscreenChange">
+    <div>
+      <section class="section no-padding">
+        <Header />
+      </section>
+      <section class="section no-padding">
+        <Sidebar />
+      </section>
+      <section class="section no-padding">
+        <router-view></router-view>
+      </section>
+    </div>
+  </fullscreen>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Sidebar from '@/components/layout/Sidebar.vue';
 import Header from '@/components/layout/Header.vue';
-
+import Fullscreen from 'vue-fullscreen/src/component.vue';
 @Component({
   components: {
     Header,
     Sidebar,
+    Fullscreen,
   },
 })
 export default class App extends Vue {
   public lightLogo = require('./assets/logo_white.png');
   public darkLogo = require('./assets/logo_color.png');
 
-  public setFullscreenFalse() {
-    if (!document.fullscreenElement) {
-      this.$store.commit('setFullscreenFalse');
+  public fullscreenChange(fullscreen: boolean) {
+    if (fullscreen !== this.isFullscreen) {
+      this.$store.commit('toggleFullscreen');
     }
+  }
+  get isFullscreen() {
+    return this.$store.state.isFullscreen;
   }
   get isSidebarOpen() {
     return this.$store.state.isSidebarOpen;
@@ -40,6 +46,11 @@ export default class App extends Vue {
   }
   get isLeft() {
     return this.$store.state.isLeft;
+  }
+  @Watch('isFullscreen')
+  public toggle() {
+    // @ts-ignore
+    this.$refs.fullscreen.toggle();
   }
 }
 </script>
