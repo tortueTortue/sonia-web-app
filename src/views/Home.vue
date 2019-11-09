@@ -11,25 +11,24 @@
       :is-resizable="true"
       :is-mirrored="false"
       :vertical-compact="false"
-      :margin="[10, 10]"
+      :margin="[2, 2]"
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="topic in activeTopics"
-        :x="topic.x"
-        :y="topic.y"
-        :w="topic.w"
-        :h="topic.h"
-        :i="topic.i"
-        :key="topic.id"
-        :isDraggable="topic.isDraggable"
-        :isResizable="topic.isResizable"
+        v-for="module in activeTopics"
+        :x="module.x"
+        :y="module.y"
+        :w="module.w"
+        :h="module.h"
+        :i="module.i"
+        :key="module.id"
+        :isDraggable="module.isDraggable"
+        :isResizable="module.isResizable"
         class="topic"
         @resized="resizedEvent"
         @moved="movedEvent"
       >
-        <module-header :topic="topic" />
-        <TestModule />
+        <Module :moduleParams="module" />
       </grid-item>
     </grid-layout>
     <SoniaFooter name="sonia-footer"></SoniaFooter>
@@ -38,10 +37,8 @@
 
 <script>
 import VueGridLayout from "vue-grid-layout";
-import ModuleX from "./../components/ModuleX.vue";
 import SoniaFooter from "./../components/SoniaFooter.vue";
-import TestModule from "./../components/TestModule.vue";
-import ModuleHeader from "./../components/ModuleHeader.vue";
+import Module from "./../components/modules/Module.vue";
 
 export default {
   name: "home",
@@ -82,9 +79,7 @@ export default {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
     SoniaFooter,
-    TestModule,
-    ModuleX,
-    ModuleHeader
+    Module
   }
 };
 </script>
@@ -117,7 +112,7 @@ export default {
   font-size: 0.8rem !important;
 }
 .topic {
-  border: 2px solid lightgray;
+  border: 1.5px solid lightgray;
   border-radius: 5px;
 }
 .footer {

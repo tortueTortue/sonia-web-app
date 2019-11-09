@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import ROSLIB from "../../node_modules/roslib";
+import ROSLIB from "../../../node_modules/roslib";
 
 export default {
   name: "test-module",

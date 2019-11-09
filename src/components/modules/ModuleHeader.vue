@@ -2,17 +2,17 @@
   <div>
     <nav class="level module-nav">
       <div class="level-left">
-        <span class="text-small unselectable">Index: {{ topic.i }}</span>
+        <span class="text-small unselectable"> {{ moduleParams.name }}</span>
       </div>
       <div class="level-right">
         <button
-          @click="fixModule(topic)"
+          @click="fixModule(moduleParams)"
           class="button is-success is-small is-very-small is-outlined"
         >
           <b-icon size="is-small" icon="anchor"></b-icon>
         </button>
         <button
-          @click="minimizeModule(topic)"
+          @click="minimizeModule(moduleParams)"
           class="button is-warning is-small is-very-small is-outlined"
         >
           <b-icon size="is-small" icon="window-minimize"></b-icon>
@@ -27,19 +27,19 @@
 
 <script>
 export default {
-  props: ["topic"],
+  props: { moduleParams: Object },
   methods: {
-    minimizeModule: function(topic) {
-      console.log("Minimize this module" + topic.i);
+    minimizeModule: function(moduleParams) {
+      console.log("Minimize this module" + moduleParams.i);
       this.$store.commit("setModuleStatus", {
-        i: topic.i,
-        active: !topic.active
+        i: moduleParams.i,
+        active: !moduleParams.active
       });
     },
-    fixModule: function(topic) {
-      console.log("Fix this module" + topic.i);
-      topic.static = !topic.static;
-      topic.isDraggable = !topic.isDraggable;
+    fixModule: function(moduleParams) {
+      console.log("Fix this module" + moduleParams.i);
+      moduleParams.static = !moduleParams.static;
+      moduleParams.isDraggable = !moduleParams.isDraggable;
     }
   }
 };
