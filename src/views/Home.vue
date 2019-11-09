@@ -11,10 +11,10 @@
       :is-resizable="true"
       :is-mirrored="false"
       :vertical-compact="false"
-      :margin="[10, 10]"
+      :margin="[2, 2]"
       :use-css-transforms="true"
     >
-      <grid-item
+      <!-- <grid-item
         v-for="topic in activeTopics"
         :x="topic.x"
         :y="topic.y"
@@ -30,7 +30,8 @@
       >
         <module-header :topic="topic" />
         <TestModule />
-      </grid-item>
+      </grid-item>-->
+      <SoniaModule v-for="module in activeTopics" :key="module.i" :moduleParam="module"></SoniaModule>
     </grid-layout>
     <SoniaFooter name="sonia-footer"></SoniaFooter>
   </div>
@@ -38,10 +39,8 @@
 
 <script>
 import VueGridLayout from "vue-grid-layout";
-import ModuleX from "./../components/ModuleX.vue";
 import SoniaFooter from "./../components/SoniaFooter.vue";
-import TestModule from "./../components/TestModule.vue";
-import ModuleHeader from "./../components/ModuleHeader.vue";
+import SoniaModule from "./../components/modules/SoniaModule.vue";
 
 export default {
   name: "home",
@@ -80,11 +79,11 @@ export default {
   },
   components: {
     GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem,
+  
     SoniaFooter,
-    TestModule,
-    ModuleX,
-    ModuleHeader
+  
+  
+    SoniaModule
   }
 };
 </script>
