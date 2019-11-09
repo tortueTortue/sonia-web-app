@@ -20,15 +20,8 @@ import SoniaNavbar from "./components/SoniaNavbar.vue";
 import Sidebar from "./components/Sidebar.vue";
 
 export default {
-  beforeMount: {
-    init() {
-      this.$store.commit("initModuleRepertory");
-      document.addEventListener(
-        "fullscreenchange",
-        this.setFullscreenFalse,
-        false
-      );
-    }
+  created: function() {
+    this.init()
   },
   components: {
     SoniaNavbar,
@@ -43,6 +36,15 @@ export default {
     };
   },
   methods: {
+    init() {
+      console.log("Let's Initiate the module repertory");
+      this.$store.commit("initModuleRepertory");
+      document.addEventListener(
+        "fullscreenchange",
+        this.setFullscreenFalse,
+        false
+      );
+    },
     setFullscreenFalse() {
       if (!document.fullscreenElement) {
         console.log("We just quit fullscreen mode");

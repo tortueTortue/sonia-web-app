@@ -3,6 +3,8 @@
 // TODO 3 : Topic list (Eventually SoniaModuleList) is a list of the modules(id and name)
 import axios from "axios";
 
+const be_api_url = "http://localhost:8000";
+
 const state = {
     activeTopics: [
         { "x": 0, "y": 0, "w": 5, "h": 10, "i": "0", "active": true, "isDraggable": true, "isResizable": true, "name": "Map" }
@@ -20,7 +22,7 @@ const state = {
         { "x": 6, "y": 0, "w": 2, "h": 3, "i": "3", "active": false, "isDraggable": true, "isResizable": true },
         { "x": 8, "y": 0, "w": 2, "h": 3, "i": "4", "active": false, "isDraggable": true, "isResizable": true }
     ],
-    moduleRepertory: new Map(),
+    moduleRepertory: [],
     inactiveModules: new Map(),
     activeModules: new Map()
 }
@@ -28,19 +30,18 @@ const state = {
 const mutations = {
     initModuleRepertory() {
         axios
-            .get(this.$store.state.be_api_url + "/api/moduleName/")
+            .get(be_api_url + "/api/moduleName/")
             .then(response => {
-                console.log("Response : " + response);
-                var modules = response.data || "";
-                modules.forEach(module => {
-                    this.moduleRepertory.set(module.id, module)
-                })
+                console.log("Response : " + response.data);
+                state.moduleRepertory = response.data || "";
+                console.log("Module repertory successfully initiated");
+                console.log("Here are the modules available : ");
+                for (module of state.moduleRepertory) {
+                    console.log(module.name)
+                }
             })
             .catch(function(error) {
-                console.log(error);
-            })
-            .finally(function() {
-                console.log("Done.");
+                console.log("There was an error during the initiation of the module repertory" + error);
             });
     },
     setTopicPosition(state, payload) {

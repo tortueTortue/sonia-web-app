@@ -17,16 +17,11 @@
               <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'"></b-icon>
             </template>
             <b-menu-item
-              v-for="module in modules"
+              v-for="module in moduleRepertory"
               v-bind:key="module.id"
               :icon="module.icon"
               :label="module.name"
             ></b-menu-item>
-            <b-menu-item icon="account" label="Missions"></b-menu-item>
-            <b-menu-item icon="cellphone-link">
-              <template slot="label">Thrusters</template>
-            </b-menu-item>
-            <b-menu-item icon="cash-multiple" label="Camera" disabled></b-menu-item>
           </b-menu-item>
           <b-menu-item icon="account" label="My Account">
             <b-menu-item label="Account data"></b-menu-item>
@@ -72,13 +67,6 @@ export default {
       modules
     };
   },
-  beforeMount: {
-    initModuleList(){
-      // axios get Modules
-      // modules = request.data
-      // TODO add icon field in ModuleName db model
-    }
-  },
   methods: {
     login: function() {
       // Opens a vue with a login and a signup page
@@ -87,10 +75,10 @@ export default {
       // Logs user out
     },
     saveLayout: function() {
-      console.log("here");
-      this.promptSaveLAyoutAlert();
+      console.log("Prompt save layout window");
+      this.promptSaveLayoutAlert();
     },
-    promptSaveLAyoutAlert() {
+    promptSaveLayoutAlert() {
       this.$buefy.dialog.prompt({
         message: `Give the layout a name.`,
         inputAttrs: {
@@ -122,6 +110,9 @@ export default {
     }
   },
   computed: {
+    moduleRepertory(){
+      return this.$store.state.topic.moduleRepertory;
+    },
     isSidebarOpen() {
       return this.$store.state.isSidebarOpen;
     },
