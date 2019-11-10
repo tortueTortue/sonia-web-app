@@ -77,6 +77,10 @@ const mutations = {
         console.log("There are currently " + state.activeModuleList.length + " active modules")
     },
     setTopicPosition(state, payload) {
+        console.log("Change position")
+            // Change for a map
+        state.activeModuleList[payload.i].x = payload.x;
+        state.activeModuleList[payload.i].y = payload.y;
         state.topicList.forEach(function(item, index) {
             if (item.i == payload.i) {
                 state.topicList[index].x = payload.x
@@ -85,6 +89,8 @@ const mutations = {
         })
     },
     setTopicSize(state, payload) {
+        state.activeModuleList[payload.i].h = payload.h;
+        state.activeModuleList[payload.i].w = payload.w;
         state.topicList.forEach(function(item, index) {
             if (item.i == payload.i) {
                 state.topicList[index].h = payload.h

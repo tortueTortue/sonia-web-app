@@ -86,7 +86,6 @@ export default {
   }
 };
 </script>
-
 <style>
 .unselectable {
   -webkit-touch-callout: none;
