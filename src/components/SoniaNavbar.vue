@@ -7,8 +7,6 @@
       <template slot="brand">
         <b-navbar-item
           :class="{'hover-dark': isDark,'hover-light': !isDark}"
-          tag="router-link"
-          :to="{ path: '/' }"
         >
           <img @click="toggleSideBar" :src=" !isDark ? darkLogo : lightLogo" alt="Sonia logo" />
         </b-navbar-item>
