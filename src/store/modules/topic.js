@@ -24,7 +24,8 @@ const state = {
     ],
     moduleRepertory: [],
     inactiveModules: new Map(),
-    activeModules: new Map()
+    activeModules: new Map(),
+    activeModuleList: []
 }
 
 const mutations = {
@@ -36,13 +37,44 @@ const mutations = {
                 state.moduleRepertory = response.data || "";
                 console.log("Module repertory successfully initiated");
                 console.log("Here are the modules available : ");
-                for (module of state.moduleRepertory) {
-                    console.log(module.name)
-                }
+                // for (module of state.moduleRepertory) {
+                //     console.log("Module : " + module.name + " ID : " + module.id)
+                //     Object.keys(module).forEach((prop) => console.log(prop));
+                // }
+                state.moduleRepertory.forEach(mod => {
+                    console.log("Module : " + mod.name + " ID : " + mod.id)
+                })
             })
             .catch(function(error) {
                 console.log("There was an error during the initiation of the module repertory" + error);
             });
+    },
+    createModule(state, id) {
+        id--;
+        console.log("We are about to create this module: " + state.moduleRepertory[id].name)
+        state.activeModules.set(state.moduleRepertory[id].name, {
+            "x": 0,
+            "y": 0,
+            "w": 5,
+            "h": 10,
+            "i": id,
+            "active": true,
+            "isDraggable": true,
+            "isResizable": true,
+            "name": state.moduleRepertory[id].name
+        })
+        state.activeModuleList[id] = {
+            "x": 0,
+            "y": 0,
+            "w": 5,
+            "h": 10,
+            "i": id,
+            "active": true,
+            "isDraggable": true,
+            "isResizable": true,
+            "name": state.moduleRepertory[id].name
+        }
+        console.log("There are currently " + state.activeModuleList.length + " active modules")
     },
     setTopicPosition(state, payload) {
         state.topicList.forEach(function(item, index) {

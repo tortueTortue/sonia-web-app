@@ -4,7 +4,7 @@
     :class="{'dark-mode': isDark,'div-full-width': isSidebarOpen, 'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
   >
     <grid-layout
-      :layout.sync="activeTopics"
+      :layout.sync="activeModuleList"
       :col-num="12"
       :row-height="30"
       :is-draggable="true"
@@ -15,20 +15,20 @@
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="module in activeTopics"
-        :x="module.x"
-        :y="module.y"
-        :w="module.w"
-        :h="module.h"
-        :i="module.i"
-        :key="module.id"
-        :isDraggable="module.isDraggable"
-        :isResizable="module.isResizable"
+        v-for="mod in activeModuleList"
+        :x="mod.x"
+        :y="mod.y"
+        :w="mod.w"
+        :h="mod.h"
+        :i="mod.i"
+        :key="mod.id"
+        :isDraggable="mod.isDraggable"
+        :isResizable="mod.isResizable"
         class="topic"
         @resized="resizedEvent"
         @moved="movedEvent"
       >
-        <Module :moduleParams="module" />
+        <Module :moduleParams="mod" />
       </grid-item>
     </grid-layout>
     <SoniaFooter name="sonia-footer"></SoniaFooter>
@@ -64,6 +64,9 @@ export default {
   computed: {
     activeTopics() {
       return this.$store.state.topic.activeTopics;
+    },
+    activeModuleList() {
+      return this.$store.state.topic.activeModuleList;
     },
     inactiveTopics() {
       return this.$store.state.topic.inactiveTopics;

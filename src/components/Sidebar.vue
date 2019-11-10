@@ -17,10 +17,11 @@
               <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'"></b-icon>
             </template>
             <b-menu-item
-              v-for="module in moduleRepertory"
-              v-bind:key="module.id"
-              :icon="module.icon"
-              :label="module.name"
+              v-for="mod in moduleRepertory"
+              v-bind:key="mod.id"
+              :icon="mod.icon"
+              :label="mod.name"
+              @click="addModule(mod.id)"
             ></b-menu-item>
           </b-menu-item>
           <b-menu-item icon="account" label="My Account">
@@ -107,10 +108,14 @@ export default {
         .finally(function() {
           console.log("Done.");
         });
+    },
+    addModule(id) {
+      console.log("Creating module of this id : " + (id-1));
+      this.$store.commit("createModule", id);
     }
   },
   computed: {
-    moduleRepertory(){
+    moduleRepertory() {
       return this.$store.state.topic.moduleRepertory;
     },
     isSidebarOpen() {
