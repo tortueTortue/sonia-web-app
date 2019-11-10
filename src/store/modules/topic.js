@@ -53,19 +53,20 @@ const mutations = {
         id--;
         console.log("We are about to create this module: " + state.moduleRepertory[id].name)
         state.activeModules.set(state.moduleRepertory[id].name, {
-            "x": 0,
-            "y": 0,
+            "x": 5,
+            "y": 5,
             "w": 5,
             "h": 10,
             "i": id,
             "active": true,
             "isDraggable": true,
+            "static": false,
             "isResizable": true,
             "name": state.moduleRepertory[id].name
         })
         state.activeModuleList[id] = {
-            "x": 0,
-            "y": 0,
+            "x": 5,
+            "y": 5,
             "w": 5,
             "h": 10,
             "i": id,

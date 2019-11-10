@@ -47,6 +47,7 @@ export default {
       alert("Death to the SUB");
     },
     movedEvent: function(i, newX, newY) {
+      console.log("Moving this module : " + i )
       this.$store.commit("setTopicPosition", {
         i: i,
         x: newX,
@@ -54,6 +55,7 @@ export default {
       });
     },
     resizedEvent: function(i, newH, newW) {
+      console.log("Resizing this module : " + i )
       this.$store.commit("setTopicSize", {
         i: i,
         h: newH,
