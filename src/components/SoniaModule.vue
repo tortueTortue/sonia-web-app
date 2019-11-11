@@ -3,8 +3,6 @@
     ref="item"
     class="vue-grid-item color white-text"
     :style="style"
-    @resized="resizedEvent"
-    @moved="movedEvent"
   >
     <nav class="level module-nav">
       <div class="level-left">
@@ -56,20 +54,6 @@ export default {
       console.log("Fix this module" + soniaMod.i);
       soniaMod.static = !soniaMod.static;
       soniaMod.isDraggable = !soniaMod.isDraggable;
-    },
-    movedEvent: function(i, newX, newY) {
-      this.$store.commit("setTopicPosition", {
-        i: i,
-        x: newX,
-        y: newY
-      });
-    },
-    resizedEvent: function(i, newH, newW) {
-      this.$store.commit("setTopicSize", {
-        i: i,
-        h: newH,
-        w: newW
-      });
     }
   },
   computed: {
@@ -91,7 +75,7 @@ export default {
   border: 2px solid lightgray;
   border-radius: 5px;
 }
-.is-anchored{
-  color: rgb(8, 104, 12)!important;
+.is-anchored {
+  color: rgb(8, 104, 12) !important;
 }
 </style>

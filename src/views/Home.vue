@@ -4,7 +4,7 @@
     :class="{'dark-mode': isDark,'div-full-width': isSidebarOpen, 'window-width': !isSidebarOpen,'is-10': isSidebarOpen,  'column':isSidebarOpen,'padding-null':isSidebarOpen}"
   >
     <grid-layout
-      :layout.sync="activeModuleList"
+      :layout.sync="modules"
       :col-num="12"
       :row-height="30"
       :is-draggable="true"
@@ -15,18 +15,16 @@
       :use-css-transforms="true"
     >
       <grid-item
-        v-for="mod in activeModuleList"
+        v-for="mod in activeModules"
         :x="mod.x"
         :y="mod.y"
         :w="mod.w"
         :h="mod.h"
         :i="mod.i"
-        :key="mod.id"
+        :key="mod.i"
         :isDraggable="mod.isDraggable"
         :isResizable="mod.isResizable"
         class="topic"
-        @resized="resizedEvent"
-        @moved="movedEvent"
       >
         <Module :moduleParams="mod" />
       </grid-item>
@@ -45,30 +43,23 @@ export default {
   methods: {
     killswitch: function() {
       alert("Death to the SUB");
-    },
-    movedEvent: function(i, newX, newY) {
-      console.log("Moving this module : " + i )
-      this.$store.commit("setTopicPosition", {
-        i: i,
-        x: newX,
-        y: newY
-      });
-    },
-    resizedEvent: function(i, newH, newW) {
-      console.log("Resizing this module : " + i )
-      this.$store.commit("setTopicSize", {
-        i: i,
-        h: newH,
-        w: newW
-      });
     }
+  },
+  beforeMount: function() {
+      console.log("Let's reset the module repertory");
+      this.$store.commit("initModuleRepertory");
   },
   computed: {
     activeTopics() {
       return this.$store.state.topic.activeTopics;
     },
-    activeModuleList() {
+    modules() {
       return this.$store.state.topic.activeModuleList;
+    },
+    activeModules() {
+      return this.$store.state.topic.activeModuleList.filter(mod => {
+        return mod.active && !mod.isMinimized;
+      });
     },
     inactiveTopics() {
       return this.$store.state.topic.inactiveTopics;

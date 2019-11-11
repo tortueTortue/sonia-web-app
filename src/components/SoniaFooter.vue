@@ -34,20 +34,6 @@ export default {
     killswitch: function() {
       this.promptKillswitchAlert();
     },
-    movedEvent: function(i, newX, newY) {
-      this.$store.commit("setTopicPosition", {
-        i: i,
-        x: newX,
-        y: newY
-      });
-    },
-    resizedEvent: function(i, newH, newW) {
-      this.$store.commit("setTopicSize", {
-        i: i,
-        h: newH,
-        w: newW
-      });
-    },
     minimizeModule: function(topic) {
       console.log("Minimize this module" + topic.i);
       this.$store.commit("setModuleStatus", {
