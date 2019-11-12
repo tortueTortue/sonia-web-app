@@ -4,12 +4,12 @@
     class="footer has-text-centered level fixed-bottom"
   >
     <button
-      v-for="topic in inactiveTopics"
-      :key="topic.id"
-      @click="minimizeModule(topic)"
+      v-for="mod in inactiveModules"
+      :key="mod.i"
+      @click="minimizeModule(mod.i)"
       class="button is-dark is-small is-outlined"
       :class="isDark ? 'mini-wid-dark-mode-kill' : 'mini-wid-light-mode-kill'"
-    >Index: {{ topic.i }}</button>
+    >Index: {{ mod.i }}</button>
 
     <b-button
       @click="killswitch"
@@ -34,12 +34,9 @@ export default {
     killswitch: function() {
       this.promptKillswitchAlert();
     },
-    minimizeModule: function(topic) {
-      console.log("Minimize this module" + topic.i);
-      this.$store.commit("setModuleStatus", {
-        i: topic.i,
-        active: !topic.active
-      });
+    minimizeModule: function(id) {
+      console.log("Minimize this module " + id);
+      this.$store.commit("toggleMinizedModule", id);
     },
     promptKillswitchAlert() {
       this.$buefy.dialog.alert({
@@ -50,8 +47,10 @@ export default {
     }
   },
   computed: {
-    inactiveTopics() {
-      return this.$store.state.topic.inactiveTopics;
+    inactiveModules() {
+      return this.$store.state.topic.activeModuleList.filter(mod => {
+        return mod.active && mod.isMinimized;
+      });
     },
     isDark() {
       return this.$store.state.isDark;

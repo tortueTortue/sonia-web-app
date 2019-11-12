@@ -21,7 +21,7 @@
               v-bind:key="mod.id"
               :icon="mod.icon"
               :label="mod.name"
-              @click="addModule(mod.id)"
+              @click="toggleModule(mod.id)"
             ></b-menu-item>
           </b-menu-item>
           <b-menu-item icon="account" label="My Account">
@@ -105,8 +105,8 @@ export default {
           console.log("Done.");
         });
     },
-    addModule(id) {
-      console.log("Creating module of this id : " + (id-1));
+    toggleModule(id) {
+      console.log("Toggling module of this id : " + (id-1));
       this.$store.commit("toggleModule", id);
     }
   },

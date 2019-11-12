@@ -12,12 +12,12 @@
           <b-icon size="is-small" icon="anchor"></b-icon>
         </button>
         <button
-          @click="minimizeModule(moduleParams)"
+          @click="minimizeModule(moduleParams.i)"
           class="button is-warning is-small is-very-small is-outlined"
         >
           <b-icon size="is-small" icon="window-minimize"></b-icon>
         </button>
-        <button class="button is-danger is-small is-very-small is-outlined">
+        <button @click="closeModule(moduleParams.i)" class="button is-danger is-small is-very-small is-outlined">
           <b-icon size="is-small" icon="close"></b-icon>
         </button>
       </div>
@@ -30,17 +30,18 @@ export default {
   name: "module-header",
   props: { moduleParams: Object },
   methods: {
-    minimizeModule: function(moduleParams) {
-      console.log("Minimize this module" + moduleParams.i);
-      this.$store.commit("setModuleStatus", {
-        i: moduleParams.i,
-        active: !moduleParams.active
-      });
+    minimizeModule: function(id) {
+      console.log("Minimize this module " + id);
+      this.$store.commit("toggleMinizedModule", id);
     },
     fixModule: function(moduleParams) {
       console.log("Fix this module" + moduleParams.i);
       moduleParams.static = !moduleParams.static;
       moduleParams.isDraggable = !moduleParams.isDraggable;
+    },
+    closeModule(id) {
+      console.log("Closing module of this id : " + (id-1));
+      this.$store.commit("closeModule", id);
     }
   }
 };

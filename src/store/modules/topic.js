@@ -50,33 +50,21 @@ const mutations = {
     },
     toggleModule(state, id) {
         id--;
-        console.log("We are about to" + (state.activeModuleList[id].active ? "close" : "open") + "this module: " + state.activeModuleList[id].name)
+        console.log("We are about to" + (state.activeModuleList[id].active ? " close " : " open ") + "this module: " + state.activeModuleList[id].name)
         state.activeModuleList[id].active = !(state.activeModuleList[id].active)
         console.log("Module successfully " + (state.activeModuleList[id].active ? "Opened" : "closed"))
     },
-    //Toggles active status
-    setModuleStatus(state, payload) {
-        var inactiveList = []
-        var activeList = []
-
-        state.topicList.forEach(function(item, index) {
-            if (item.i == payload.i) {
-                state.topicList[index].active = payload.active
-            }
-        })
-        state.topicList.forEach(function(item) {
-            if (item.active) {
-                activeList.push(item);
-            } else {
-                inactiveList.push(item);
-            }
-        })
-        state.activeTopics = activeList
-        state.inactiveTopics = inactiveList
+    closeModule(state, id) {
+        id--;
+        console.log("We are about to close this module: " + state.activeModuleList[id].name)
+        state.activeModuleList[id].active = false
+        console.log("Module successfully closed")
     },
-    closeSoniaModule(id) {
-        this.inactiveModules.delete(id)
-        this.activeModules.delete(id)
+    toggleMinizedModule(state, id) {
+        id--;
+        console.log("We are about to" + (state.activeModuleList[id].active ? " maximize " : " minimize ") + "this module: " + state.activeModuleList[id].name)
+        state.activeModuleList[id].isMinimized = !(state.activeModuleList[id].isMinimized)
+        console.log("Module successfully " + (state.activeModuleList[id].active ? "minimized." : "maximized."))
     },
     loadLayout(modules) {
         modules.forEach(module => {
