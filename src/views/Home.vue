@@ -51,18 +51,18 @@ export default {
   },
   computed: {
     activeTopics() {
-      return this.$store.state.topic.activeTopics;
+      return this.$store.state.moduleManager.activeTopics;
     },
     modules() {
-      return this.$store.state.topic.activeModuleList;
+      return this.$store.state.moduleManager.activeModuleList;
     },
     activeModules() {
-      return this.$store.state.topic.activeModuleList.filter(mod => {
+      return this.$store.state.moduleManager.activeModuleList.filter(mod => {
         return mod.active && !mod.isMinimized;
       });
     },
     inactiveTopics() {
-      return this.$store.state.topic.inactiveTopics;
+      return this.$store.state.moduleManager.inactiveTopics;
     },
     isDark() {
       return this.$store.state.isDark;

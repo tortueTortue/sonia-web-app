@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import topic from './modules/topic'
+import moduleManager from './modules/moduleManager'
 import topics from './modules/topics'
 Vue.use(Vuex)
 
@@ -54,7 +54,7 @@ export default new Vuex.Store({
     },
     //WARNING : This attribute belongs to Vue Js, not to be confused with Sonia Modules.
     modules: {
-        topic,
+        moduleManager,
         topics
     }
 })

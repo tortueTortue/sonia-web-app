@@ -35,7 +35,7 @@ export default {
       this.$store.commit("toggleMinizedModule", id);
     },
     fixModule: function(moduleParams) {
-      console.log("Fix this module" + moduleParams.i);
+      console.log("Fixing this module " + moduleParams.i);
       moduleParams.static = !moduleParams.static;
       moduleParams.isDraggable = !moduleParams.isDraggable;
     },

@@ -58,10 +58,10 @@ export default {
   },
   computed: {
     activeTopics() {
-      return this.$store.state.topic.activeTopics;
+      return this.$store.state.moduleManager.activeTopics;
     },
     inactiveTopics() {
-      return this.$store.state.topic.inactiveTopics;
+      return this.$store.state.moduleManager.inactiveTopics;
     },
     isDark() {
       return this.$store.state.isDark;

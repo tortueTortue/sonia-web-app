@@ -112,7 +112,7 @@ export default {
   },
   computed: {
     moduleRepertory() {
-      return this.$store.state.topic.moduleRepertory;
+      return this.$store.state.moduleManager.moduleRepertory;
     },
     isSidebarOpen() {
       return this.$store.state.isSidebarOpen;

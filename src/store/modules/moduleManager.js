@@ -1,4 +1,3 @@
-// TODO 1 : Refactor to use a map instead of arrays
 // TODO 2 : Rename evything with topic to SoniaModule
 // TODO 3 : Topic list (Eventually SoniaModuleList) is a list of the modules(id and name)
 import axios from "axios";
@@ -7,13 +6,6 @@ const be_api_url = "http://localhost:8000";
 
 const state = {
     activeModuleList: [],
-    topicList: [
-        { "x": 0, "y": 0, "w": 2, "h": 2, "i": "0", "active": true, "isDraggable": true, "isResizable": true },
-        { "x": 4, "y": 0, "w": 2, "h": 5, "i": "2", "active": true, "isDraggable": true, "isResizable": true },
-        { "x": 2, "y": 0, "w": 2, "h": 4, "i": "1", "active": false, "isDraggable": true, "isResizable": true },
-        { "x": 6, "y": 0, "w": 2, "h": 3, "i": "3", "active": false, "isDraggable": true, "isResizable": true },
-        { "x": 8, "y": 0, "w": 2, "h": 3, "i": "4", "active": false, "isDraggable": true, "isResizable": true }
-    ],
     moduleRepertory: []
 }
 
@@ -70,6 +62,9 @@ const mutations = {
         modules.forEach(module => {
             module.active ? this.activeModules.set(module.id, module) : this.inactiveModules.set(module.id, module)
         })
+    },
+    saveLayout() {
+
     }
 }
 

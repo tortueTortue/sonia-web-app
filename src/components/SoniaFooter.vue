@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     inactiveModules() {
-      return this.$store.state.topic.activeModuleList.filter(mod => {
+      return this.$store.state.moduleManager.activeModuleList.filter(mod => {
         return mod.active && mod.isMinimized;
       });
     },

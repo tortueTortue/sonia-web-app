@@ -127,7 +127,7 @@ export default {
   },
   computed: {
     topicList() {
-      return this.$store.state.topic.topicList;
+      return this.$store.state.moduleManager.topicList;
     }
   },
   created() {}
