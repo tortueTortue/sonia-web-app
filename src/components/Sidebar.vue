@@ -57,11 +57,7 @@ import axios from "axios";
 export default {
   name: "sidebar",
   data() {
-    const modules = [
-      { icon: "map", name: "Map", id: 1 },
-      { icon: "depth", name: "depth", id: 2 },
-      { icon: "car", name: "motors", id: 3 }
-    ];
+    const modules = [];
 
     return {
       isActive: true,
@@ -111,7 +107,7 @@ export default {
     },
     addModule(id) {
       console.log("Creating module of this id : " + (id-1));
-      this.$store.commit("createModule", id);
+      this.$store.commit("toggleModule", id);
     }
   },
   computed: {

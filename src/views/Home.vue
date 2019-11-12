@@ -47,7 +47,7 @@ export default {
   },
   beforeMount: function() {
       console.log("Let's reset the module repertory");
-     // this.$store.commit("initModuleRepertory");
+      this.$store.commit("initModuleRepertory");
   },
   computed: {
     activeTopics() {

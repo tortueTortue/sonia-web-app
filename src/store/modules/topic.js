@@ -6,10 +6,7 @@ import axios from "axios";
 const be_api_url = "http://localhost:8000";
 
 const state = {
-    activeModuleList: [
-        { "x": 4, "y": 0, "w": 2, "h": 5, "i": 0, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "DummyModule" },
-        { "x": 2, "y": 1, "w": 6, "h": 6, "i": 1, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "DummyModule" }
-    ],
+    activeModuleList: [],
     topicList: [
         { "x": 0, "y": 0, "w": 2, "h": 2, "i": "0", "active": true, "isDraggable": true, "isResizable": true },
         { "x": 4, "y": 0, "w": 2, "h": 5, "i": "2", "active": true, "isDraggable": true, "isResizable": true },
@@ -31,18 +28,18 @@ const mutations = {
                 console.log("Here are the modules available : ");
                 state.moduleRepertory.forEach(mod => {
                     console.log("Module : " + mod.name + " ID : " + mod.id)
-                    state.activeModuleList[mod.id - 1] = {
+                    state.activeModuleList.push({
                         "x": 2,
                         "y": 1,
                         "w": 6,
                         "h": 6,
                         "i": mod.id,
-                        "active": true,
+                        "active": false,
                         "isDraggable": true,
                         "isResizable": true,
                         "isMinimized": false,
                         "name": mod.name
-                    }
+                    })
                 })
                 console.log("All the modules have been added to the list.")
                 state.activeModuleList.forEach(m => console.log(" Active module : " + m.name + " id : " + m.i))
@@ -51,11 +48,11 @@ const mutations = {
                 console.log("There was an error during the instanciation of the module repertory : " + error);
             });
     },
-    addModule(state, id) {
+    toggleModule(state, id) {
         id--;
-        console.log("We are about to create this module: " + state.moduleRepertory[id].name)
-
-        console.log("There are currently " + state.activeModuleList.length + " active modules")
+        console.log("We are about to" + (state.activeModuleList[id].active ? "close" : "open") + "this module: " + state.activeModuleList[id].name)
+        state.activeModuleList[id].active = !(state.activeModuleList[id].active)
+        console.log("Module successfully " + (state.activeModuleList[id].active ? "Opened" : "closed"))
     },
     //Toggles active status
     setModuleStatus(state, payload) {

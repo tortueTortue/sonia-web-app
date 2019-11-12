@@ -11,15 +11,15 @@ import DummyModule from "./DummyModule.vue";
 export default {
   name: "Module",
   props: { moduleParams: Object },
-  components: {
-    ModuleHeader,
-    DummyModule
-  },
   methods: {},
+  components: { ModuleHeader },
   computed: {
     // ** This section dynamically imports and renders a component
     moduleComponent: function() {
-      return () => import(`@/components/modules/${this.moduleParams.name}.vue`);
+      if (this.moduleParams.active === true)
+        return () =>
+          import(`@/components/modules/${this.moduleParams.name}.vue`);
+      return "";
     }
   }
 };

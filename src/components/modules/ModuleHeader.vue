@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: "module-header",
   props: { moduleParams: Object },
   methods: {
     minimizeModule: function(moduleParams) {
