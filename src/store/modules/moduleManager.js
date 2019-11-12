@@ -30,6 +30,7 @@ const mutations = {
                         "isDraggable": true,
                         "isResizable": true,
                         "isMinimized": false,
+                        "static": false,
                         "name": mod.name
                     })
                 })
@@ -63,7 +64,47 @@ const mutations = {
             module.active ? this.activeModules.set(module.id, module) : this.inactiveModules.set(module.id, module)
         })
     },
-    saveLayout() {
+    async saveLayout(state, layoutName) {
+        var layoutId
+            // Saving the layout name
+        axios
+            .post(be_api_url + "/api/layout/", {
+                name: layoutName
+            })
+            .then(response => {
+                console.log("Response : " + response);
+                layoutId = response.data.id
+                console.log("The layout name has been saved. Id : " + layoutId);
+
+                // Saving the modules
+                state.activeModuleList.forEach(mod => {
+                    console.log("Where are inside the foreach and this is the id : " + layoutId)
+                    axios
+                        .post(be_api_url + "/api/module/", {
+                            name: mod.i,
+                            x: mod.x,
+                            y: mod.y,
+                            w: mod.w,
+                            h: mod.h,
+                            active: mod.active,
+                            isDraggable: mod.isDraggable,
+                            isResizable: mod.isResizable,
+                            isMinimized: mod.isMinimized,
+                            static: mod.static,
+                            belongsToLayout: layoutId
+                        })
+                        .then(response => {
+                            console.log("Response : " + response);
+                            console.log("This module has been added : " + response.data.name);
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                });
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
 
     }
 }

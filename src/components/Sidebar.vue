@@ -84,26 +84,15 @@ export default {
         },
         trapFocus: true,
         onConfirm: value => {
-          this.saveLayouts(value);
+          this.saveLayoutInDb(value);
           this.$buefy.toast.open(`Saving layout : ${value}`);
         }
       });
     },
-    async saveLayouts(layoutName) {
-      axios
-        .post(this.$store.state.be_api_url + "/api/layout/", {
-          name: layoutName
-        })
-        .then(response => {
-          console.log("Response : " + response);
-          this.layouts = response.data || "";
-        })
-        .catch(function(error) {
-          console.log(error);
-        })
-        .finally(function() {
-          console.log("Done.");
-        });
+    saveLayoutInDb(layoutName) {
+      console.log("Let's save this layout "+ layoutName + " in the database.");
+      this.$store.commit("saveLayout", layoutName);
+
     },
     toggleModule(id) {
       console.log("Toggling module of this id : " + (id-1));
