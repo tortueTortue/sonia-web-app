@@ -1,7 +1,7 @@
 <template>
   <div>
     <module-header :moduleParams="moduleParams" />
-    <DummyModule/>
+    <component v-bind:is="moduleComponent"></component>
   </div>
 </template>
 <script>
@@ -15,7 +15,13 @@ export default {
     ModuleHeader,
     DummyModule
   },
-  methods: {}
+  methods: {},
+  computed: {
+    // ** This section dynamically imports and renders a component
+    moduleComponent: function() {
+      return () => import(`@/components/modules/${this.moduleParams.name}.vue`);
+    }
+  }
 };
 </script>
 <style>

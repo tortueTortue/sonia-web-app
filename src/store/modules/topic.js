@@ -7,8 +7,8 @@ const be_api_url = "http://localhost:8000";
 
 const state = {
     activeModuleList: [
-        { "x": 4, "y": 0, "w": 2, "h": 5, "i": 0, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "mod" },
-        { "x": 2, "y": 1, "w": 6, "h": 6, "i": 1, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "mod" }
+        { "x": 4, "y": 0, "w": 2, "h": 5, "i": 0, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "DummyModule" },
+        { "x": 2, "y": 1, "w": 6, "h": 6, "i": 1, "active": true, "isDraggable": true, "isResizable": true, "isMinimized": false, "name": "DummyModule" }
     ],
     topicList: [
         { "x": 0, "y": 0, "w": 2, "h": 2, "i": "0", "active": true, "isDraggable": true, "isResizable": true },

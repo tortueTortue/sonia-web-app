@@ -38,7 +38,7 @@ export default {
   methods: {
     init() {
       console.log("Let's Initiate the module repertory");
-      this.$store.commit("initModuleRepertory");
+     // this.$store.commit("initModuleRepertory");
       document.addEventListener(
         "fullscreenchange",
         this.setFullscreenFalse,
