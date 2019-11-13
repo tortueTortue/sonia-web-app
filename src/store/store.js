@@ -11,7 +11,6 @@ export default new Vuex.Store({
         isSignedIn: false,
         isLeft: true,
         isKillswitchUp: false,
-        activeLayoutId: -1,
         isFullscreen: false,
         be_api_url: "http://localhost:8000"
     },

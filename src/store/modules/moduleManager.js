@@ -1,18 +1,17 @@
-// TODO 2 : Rename evything with topic to SoniaModule
-// TODO 3 : Topic list (Eventually SoniaModuleList) is a list of the modules(id and name)
 import axios from "axios";
 
 const be_api_url = "http://localhost:8000";
 
 const state = {
     activeModuleList: [],
-    moduleRepertory: []
+    moduleRepertory: [],
+    activeLayoutId: -1
 }
 
 const mutations = {
     initModuleRepertory() {
         axios
-            .get(be_api_url + "/api/moduleName/")
+            .get(be_api_url + "/api/moduleName/", )
             .then(response => {
                 console.log("Response : " + response.data);
                 state.moduleRepertory = response.data || "";
@@ -59,10 +58,19 @@ const mutations = {
         state.activeModuleList[id].isMinimized = !(state.activeModuleList[id].isMinimized)
         console.log("Module successfully " + (state.activeModuleList[id].active ? "minimized." : "maximized."))
     },
-    loadLayout(modules) {
-        modules.forEach(module => {
-            module.active ? this.activeModules.set(module.id, module) : this.inactiveModules.set(module.id, module)
-        })
+    loadLayout(state, id) {
+        axios
+            .get(be_api_url + "/api/modules/" + id)
+            .then(response => {
+                console.log("Response : " + response.data);
+                state.activeModuleList.length = 0
+                state.activeModuleList = response.data || "";
+                state.activeLayoutId = state.activeModuleList[0].belongsToLayout
+                console.log("The layout has been loaded.");
+            })
+            .catch(function(error) {
+                console.log("There was an error during the loading of the layout : " + error);
+            });
     },
     async saveLayout(state, layoutName) {
         var layoutId

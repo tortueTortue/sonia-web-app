@@ -46,7 +46,12 @@
         >
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">
-              <span v-if="!isEditMode">{{ props.row.name }}</span>
+              <span v-if="!isEditMode">
+                <button @click="setLayout(props.row)" class="button color-none is-small">
+                  <b-icon class icon="table-large-plus"></b-icon>
+                </button>
+                {{ props.row.name }}
+              </span>
               <b-field v-else>
                 <b-input class="settings-input" :id="'layout'+props.row.id" :value="props.row.name"></b-input>
               </b-field>
@@ -196,6 +201,23 @@ export default {
         onConfirm: () => {
           this.deleteLayout(id);
           this.$buefy.toast.open("Layout deleted!");
+        }
+      });
+    },
+    setLayout(layout) {
+      this.confirmLayout(layout);
+    },
+    confirmLayout(layout) {
+      this.$buefy.dialog.confirm({
+        title: "Setting Layout",
+        message:
+          "Are you sure you want to <b>set</b> this layout? " + layout.name,
+        confirmText: "Add Layout",
+        type: "is-success",
+        hasIcon: true,
+        onConfirm: () => {
+          this.$store.commit("loadLayout", layout.id);
+          this.$buefy.toast.open("Layout loaded!");
         }
       });
     }
