@@ -57,6 +57,7 @@ export default {
       return this.$store.state.isSidebarOpen;
     },
     isDark() {
+       document.documentElement.outerHTML.backgroundColor = this.$store.state.isDark ? "#081b33 !important;" : "#fff !important;"
       return this.$store.state.isDark;
     },
     isLeft() {
@@ -68,7 +69,8 @@ export default {
 <style>
 html {
   overflow: hidden !important;
-  background-color: #081b33 !important;
+  background-color: #fff !important;
+  /* background-color: #081b33 !important; */
 }
 .hover-dark:hover {
   background-color: rgb(3, 16, 32) !important;
