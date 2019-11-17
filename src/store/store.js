@@ -17,8 +17,6 @@ export default new Vuex.Store({
     mutations: {
         toggleDarkMode() {
             this.state.isDark = !this.state.isDark
-                // if (this.state.isDark == true) document.body.style.background = "#081b33";
-                // else document.html.style.background = "#fff";
         },
         toggleSideBar() {
             this.state.isSidebarOpen = !this.state.isSidebarOpen

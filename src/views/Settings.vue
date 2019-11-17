@@ -35,13 +35,15 @@
           </button>
         </div>
         <br />
-        <b-table
-          :data="isEmpty ? [] : layouts"
-        >
+        <b-table :data="isEmpty ? [] : layouts">
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">
               <span v-if="!isEditMode">
-                <button @click="setLayout(props.row)" class="button color-none is-small" :class="isDark ? '' : 'light-color-none'">
+                <button
+                  @click="setLayout(props.row)"
+                  class="button color-none is-small"
+                  :class="isDark ? '' : 'light-color-none'"
+                >
                   <b-icon class icon="table-large-plus"></b-icon>
                 </button>
                 {{ props.row.name }}
@@ -220,17 +222,6 @@ export default {
   },
   mounted: function() {
     this.getLayouts();
-  },
-  computed: {
-    // isDark() {
-    //   return this.$store.state.isDark;
-    // },
-    // isLeft() {
-    //   return this.$store.state.isLeft;
-    // },
-    // isKillswitchUp() {
-    //   return this.$store.state.isKillswitchUp;
-    // }
   }
 };
 </script>

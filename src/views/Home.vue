@@ -80,53 +80,5 @@ export default {
 };
 </script>
 <style>
-.unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.fixed-bottom {
-  position: fixed;
-  bottom: 0;
-}
-.window-height {
-  height: calc(100vh - 90px) !important;
-}
-.window-width {
-  width: 100vw !important;
-}
-.is-very-small {
-  height: 18px !important;
-  width: 18px !important;
-  padding: 0 !important;
-}
-.text-small {
-  font-size: 0.8rem !important;
-}
-.topic {
-  border: 1.5px solid lightgray;
-  border-radius: 5px;
-}
-.footer {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 50px !important;
-  padding: 5px 5px 5px 5px !important;
-  text-align: center;
-}
-.bold {
-  font-weight: 900;
-}
-.md-text-size {
-  font-size: 1.2rem !important;
-  line-height: 140% !important;
-}
-.scroll-y {
-  overflow-y: scroll !important;
-}
 </style>
 
