@@ -10,7 +10,7 @@
         @click="minimizeModule(mod.i)"
         class="button is-dark is-small is-outlined"
         :class="isDark ? 'mini-wid-dark-mode-kill' : 'mini-wid-light-mode-kill'"
-      >Index: {{ mod.i }}</button>
+      >Index: {{ mod.i }}<button class="button is-danger" @click="closeModule(mod.i)">x</button></button>
     </div>
     <div class="level-right">
       <b-button
@@ -39,6 +39,10 @@ export default {
     minimizeModule: function(id) {
       console.log("Minimize this module " + id);
       this.$store.commit("toggleMinizedModule", id);
+    },
+    closeModule: function(id) {
+      console.log("Minimize this module " + id);
+      this.$store.commit("closeModule", id);
     },
     promptKillswitchAlert() {
       this.$buefy.dialog.alert({

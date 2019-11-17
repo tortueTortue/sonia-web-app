@@ -1,10 +1,6 @@
-import axios from "axios";
-
-const be_api_url = "http://localhost:8000";
-
 const state = {
-    selectedLanguage: textEnglish,
-    textEnglish = new Map([
+    // selectedLanguage: textEnglish,
+    textEnglish : new Map([
                     ['Dark_mode', 'Dark mode'], 
                     ['Lefty', 'Lefty'], 
                     ['Killswitch_Top', 'Killswitch Top'], 
