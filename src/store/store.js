@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import moduleManager from './modules/moduleManager'
 import topics from './modules/topics'
+import language from './utils/language'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -52,6 +53,7 @@ export default new Vuex.Store({
     //WARNING : This attribute belongs to Vue Js, not to be confused with Sonia Modules.
     modules: {
         moduleManager,
-        topics
+        topics,
+        language
     }
 })
