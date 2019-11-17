@@ -5,9 +5,7 @@
   >
     <b-navbar :class="{'dark-mode-navbar': isDark}">
       <template slot="brand">
-        <b-navbar-item
-          :class="{'hover-dark': isDark,'hover-light': !isDark}"
-        >
+        <b-navbar-item :class="{'hover-dark': isDark,'hover-light': !isDark}">
           <img @click="toggleSideBar" :src=" !isDark ? darkLogo : lightLogo" alt="Sonia logo" />
         </b-navbar-item>
       </template>
@@ -83,8 +81,13 @@ export default {
       this.promptKillswitchAlert();
     },
     toggleFullscreen() {
-      this.$store.commit("setFullscreenTrue");
-      document.getElementById('app').requestFullscreen();
+      if (!this.$store.state.isFullscreen) {
+        document.getElementById("app").requestFullscreen();
+        this.$store.commit("setFullscreenTrue");
+      } else {
+        document.exitFullscreen();
+        this.$store.commit("setFullscreenFalse");
+      }
     }
   },
   computed: {
