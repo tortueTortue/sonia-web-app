@@ -189,6 +189,9 @@ ul.sidebar {
   color: rgb(59, 59, 85) !important;
   transition: ease-out 0.3s;
 }
+.color-grey{
+  color: #202020!important;
+}
 </style>
 
 

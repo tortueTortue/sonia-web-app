@@ -47,7 +47,7 @@
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">
               <span v-if="!isEditMode">
-                <button @click="setLayout(props.row)" class="button color-none is-small">
+                <button @click="setLayout(props.row)" class="button color-none is-small" :class="isDark ? '' : 'color-grey'">
                   <b-icon class icon="table-large-plus"></b-icon>
                 </button>
                 {{ props.row.name }}
