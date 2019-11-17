@@ -37,17 +37,11 @@
         <br />
         <b-table
           :data="isEmpty ? [] : layouts"
-          :bordered="isBordered"
-          :striped="isStriped"
-          :narrowed="isNarrowed"
-          :hoverable="isHoverable"
-          :loading="isLoading"
-          :focusable="isFocusable"
         >
           <template slot-scope="props">
             <b-table-column field="layoutName" label="Name">
               <span v-if="!isEditMode">
-                <button @click="setLayout(props.row)" class="button color-none is-small" :class="isDark ? '' : 'color-grey'">
+                <button @click="setLayout(props.row)" class="button color-none is-small" :class="isDark ? '' : 'light-color-none'">
                   <b-icon class icon="table-large-plus"></b-icon>
                 </button>
                 {{ props.row.name }}
@@ -123,14 +117,12 @@ export default {
     return {
       layouts,
       isEmpty: false,
-      isBordered: false,
-      isStriped: false,
-      isNarrowed: false,
-      isHoverable: false,
-      isFocusable: false,
       isLoading: false,
       isEditMode: false,
-      fullscreen: false
+      fullscreen: false,
+      isLeft: this.$store.state.isLeft,
+      isDark: this.$store.state.isDark,
+      isKillswitchUp: this.$store.state.isKillswitchUp
     };
   },
   methods: {
@@ -230,15 +222,15 @@ export default {
     this.getLayouts();
   },
   computed: {
-    isDark() {
-      return this.$store.state.isDark;
-    },
-    isLeft() {
-      return this.$store.state.isLeft;
-    },
-    isKillswitchUp() {
-      return this.$store.state.isKillswitchUp;
-    }
+    // isDark() {
+    //   return this.$store.state.isDark;
+    // },
+    // isLeft() {
+    //   return this.$store.state.isLeft;
+    // },
+    // isKillswitchUp() {
+    //   return this.$store.state.isKillswitchUp;
+    // }
   }
 };
 </script>

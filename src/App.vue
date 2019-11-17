@@ -70,8 +70,12 @@ export default {
 html {
   overflow: hidden !important;
   background-color: #fff !important;
+   background-color: inherit;
   /* background-color: #081b33 !important; */
 }
+/* html:fullscreen, html:-webkit-full-screen, html:-moz-full-screen {
+    background-color: #fff!important;
+} */
 .hover-dark:hover {
   background-color: rgb(3, 16, 32) !important;
 }

@@ -31,9 +31,6 @@
       <template slot="end">
         <b-navbar-item tag="div">
           <div class="buttons">
-            <a class="button is-dark" @click="toggleDarkMode">
-              <strong>Dark Mode</strong>
-            </a>
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
@@ -74,9 +71,6 @@ export default {
   methods: {
     toggleSideBar: function() {
       this.$store.commit("toggleSideBar");
-    },
-    toggleDarkMode: function() {
-      this.$store.commit("toggleDarkMode");
     },
     promptKillswitchAlert() {
       this.$buefy.dialog.alert({
