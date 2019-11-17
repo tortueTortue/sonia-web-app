@@ -76,8 +76,9 @@
                 @click="rename(props.row.id)"
                 class="button is-small color-none"
                 :class="isDark ? 'color-none' : 'light-color-none'"
+                v-popover:tooltip="'Save'"
               >
-                <b-icon icon="content-save"></b-icon>
+                <b-icon icon="content-save" v-popover:tooltip="'Save'"></b-icon>
               </button>
               <button
                 v-if="isEditMode"
@@ -113,8 +114,11 @@ import axios from "axios";
 export default {
   name: "settings",
   data() {
-    //const layouts = [{ name: "something", id: 1 }];
-    const layouts = [{ name: "something", id: 1 }];
+    const layouts = [
+      { name: "Dummy iPad layout", id: 1 },
+      { name: "Dummy Desktop layout", id: 2 },
+      { name: "Dummy iPhone layout", id: 3 }
+    ];
 
     return {
       layouts,
@@ -131,7 +135,7 @@ export default {
   },
   methods: {
     isLayoutActive(id) {
-      return this.$store.state.activeLayoutId == id;
+      return this.$store.state.moduleManager.activeLayoutId == id;
     },
     toggleDarkMode: function() {
       this.$store.commit("toggleDarkMode");
