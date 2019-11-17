@@ -93,7 +93,7 @@
                 <p>
                   <b-icon icon="emoticon-sad" size="is-large"></b-icon>
                 </p>
-                <p>Nothing here.</p>
+                <p>There is no layouts.</p>
               </div>
             </section>
           </template>
@@ -226,46 +226,5 @@ export default {
 };
 </script>
 <style>
-.dark-mode-status {
-  background-color: #b61515 !important;
-  color: #fff !important;
-  font-weight: 600;
-}
-.delete-button {
-  font-weight: 500 !important;
-  transition: ease 0.3s;
-}
-.delete-button:hover {
-  background-color: #750a0a !important;
-  color: #fbc1c1 !important;
-  transition: ease 0.3s;
-}
-.window-height {
-  height: calc(100vh - 40px) !important;
-}
-.dark-mode-delete-button {
-  background-color: #fff !important;
-  color: #b61515 !important;
-  transition: ease 0.3s;
-  font-weight: 700 !important;
-}
-.dark-mode-delete-button:hover {
-  background-color: #6b1e1e !important;
-  border-color: #6b1e1e !important;
-  color: #f3d0d0 !important;
-}
-.inline {
-  display: inline !important;
-}
-.align-middle-y {
-  vertical-align: middle !important;
-}
-.small-margin-x {
-  margin-top: 8px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-.settings-input {
-  width: 17rem !important;
-}
+@import "../assets/stylesheets/settings.css";
 </style>
