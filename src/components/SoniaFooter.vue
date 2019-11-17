@@ -10,7 +10,7 @@
         @click="minimizeModule(mod.i)"
         class="button is-dark is-small is-outlined"
         :class="isDark ? 'mini-wid-dark-mode-kill' : 'mini-wid-light-mode-kill'"
-      >Index: {{ mod.i }}<button class="button is-danger" @click="closeModule(mod.i)">x</button></button>
+      >Index: {{ mod.i }}<button class="button is-danger is-small" @click="closeModule(mod.i)">x</button></button>
     </div>
     <div class="level-right">
       <b-button
