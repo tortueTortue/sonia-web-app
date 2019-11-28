@@ -50,9 +50,6 @@ export default {
       this.$store.commit("initModuleRepertory");
   },
   computed: {
-    activeTopics() {
-      return this.$store.state.moduleManager.activeTopics;
-    },
     modules() {
       return this.$store.state.moduleManager.activeModuleList;
     },
@@ -60,9 +57,6 @@ export default {
       return this.$store.state.moduleManager.activeModuleList.filter(mod => {
         return mod.active && !mod.isMinimized;
       });
-    },
-    inactiveTopics() {
-      return this.$store.state.moduleManager.inactiveTopics;
     },
     isDark() {
       return this.$store.state.isDark;

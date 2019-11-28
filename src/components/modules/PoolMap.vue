@@ -3,7 +3,7 @@
     <section>
       <v-stage :config="configKonva">
         <v-layer>
-          <v-circle :config="configCircle"></v-circle>
+          <v-rect :config="frameConfig"></v-rect>
         </v-layer>
       </v-stage>
     </section>
@@ -27,10 +27,9 @@ export default {
         width: 200,
         height: 200
       },
-      configCircle: {
-        x: 100,
-        y: 100,
-        radius: 70,
+      frameConfig: {
+        x: 200,
+        y: 200,
         fill: "red",
         stroke: "black",
         strokeWidth: 4

@@ -3,8 +3,7 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Thruster effort</h1>
-        <h2 class="title text-white"></h2>
-        <h3 v-for="mod in activeModules" :key="mod.i" >{{mod.name + " id : " + mod.i}}</h3>
+        <h3 v-for="t in thrusterEfforts" :key="t.ID" >{{" id : " + t.ID + " effort : " + t.effort}}</h3>
       </div>
     </section>
   </div>
@@ -17,10 +16,8 @@ export default {
   },
   methods: {},
   computed: {
-    activeModules() {
-      return this.$store.state.moduleManager.activeModuleList.filter(mod => {
-        return mod.active && !mod.isMinimized;
-      });
+    thrusterEfforts() {
+      return this.$store.state.topicManager.thrusterEfforts;
     }
   }
 };
