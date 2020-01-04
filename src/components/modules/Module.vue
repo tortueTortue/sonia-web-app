@@ -6,7 +6,6 @@
 </template>
 <script>
 import ModuleHeader from "./ModuleHeader.vue";
-import DummyModule from "./DummyModule.vue";
 
 export default {
   name: "Module",

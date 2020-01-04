@@ -1,9 +1,17 @@
 <template>
   <div>
-    <section class="section">
+    <section class="section padding-ver-null">
       <div class="container">
-        <h1 class="title">Thruster effort</h1>
-        <h3 v-for="t in thrusterEfforts" :key="t.ID" >{{" id : " + t.ID + " effort : " + t.effort}}</h3>
+        <section>
+          <b-field
+            :class="{'text-white': isDark}"
+            v-for="t in thrusterEfforts"
+            :key="t.ID"
+            :label="'T'+t.ID"
+          >
+            <b-slider :min="-100" type="is-danger" :value="t.effort"></b-slider>
+          </b-field>
+        </section>
       </div>
     </section>
   </div>
@@ -18,6 +26,9 @@ export default {
   computed: {
     thrusterEfforts() {
       return this.$store.state.topicManager.thrusterEfforts;
+    },
+    isDark() {
+      return this.$store.state.isDark;
     }
   }
 };

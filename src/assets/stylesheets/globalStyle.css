@@ -55,6 +55,9 @@ html {
   .text-white {
     color: #fff !important;
   }
+  .text-white label{
+    color: #fff !important;
+  }
   .text-white:hover {
     color: #000000 !important;
   }
@@ -88,6 +91,10 @@ html {
   }
   .padding-null {
     padding: 0% !important;
+  }
+  .padding-ver-null {
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
   }
   .div-full-width {
     width: 100% !important;

@@ -20,7 +20,7 @@ const mutations = {
                 state.moduleRepertory.forEach(mod => {
                     console.log("Module : " + mod.name + " ID : " + mod.id)
                     state.activeModuleList.push({
-                        "x": 2,
+                        "x": 1,
                         "y": 1,
                         "w": 6,
                         "h": 6,

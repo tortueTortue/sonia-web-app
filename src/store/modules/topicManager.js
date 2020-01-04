@@ -53,7 +53,7 @@ function initTopics() {
         ros: ros,
         name: "/provider_thruster/effort",
         messageType: "provider_thruster/ThrusterEffort",
-        throttle_rate: 1000
+        throttle_rate: 750
     });
     procNavigationOdom = new ROSLIB.Topic({
         ros: ros,
@@ -83,17 +83,17 @@ function connectToTopic() {
         );
     });
     procNavigationOdom.subscribe(function (message) {
-        console.log(
-            "Connected to Topic : " + procNavigationOdom.name
-        );
+        // console.log(
+        //     "Connected to Topic : " + procNavigationOdom.name
+        // );
 
         state.depthIndicatorValue = message.pose.pose.position.z;
-        console.log(
-            "Received depth indicator message from " +
-            procNavigationOdom.name +
-            ": " +
-            JSON.stringify(state.depthIndicatorValue)
-        );
+        // console.log(
+        //     "Received depth indicator message from " +
+        //     procNavigationOdom.name +
+        //     ": " +
+        //     JSON.stringify(state.depthIndicatorValue)
+        // );
     });
 }
 
